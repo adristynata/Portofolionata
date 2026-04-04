@@ -21,7 +21,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $contact = Contact::all();
+        return view('dashboard.project.index', compact('contact'));
     }
 
     /**

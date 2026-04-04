@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
             return view('dashboard');
         })->name('dashboard');
         Route:: Resource('project',ProjectController::class)->names('project');
+        Route:: Resource('contact',ProjectController::class)->names('contact');
 });
+   
 
 require __DIR__.'/auth.php';
