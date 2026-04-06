@@ -55,8 +55,8 @@
                             <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Users</p>
                             <div class="mt-5 flex items-end justify-between gap-4">
                                 <div>
-                                    <p class="text-4xl font-semibold text-white">1.2K</p>
-                                    <p class="mt-2 text-sm text-slate-400">Pengunjung bulan ini</p>
+                                    <p class="text-4xl font-semibold text-white">{{ $userCount ?? 0 }}</p>
+                                    <p class="mt-2 text-sm text-slate-400">Total users terdaftar</p>
                                 </div>
                                 <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -67,11 +67,11 @@
                         </article>
 
                         <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
-                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Revenue</p>
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Admin Activities</p>
                             <div class="mt-5 flex items-end justify-between gap-4">
                                 <div>
-                                    <p class="text-4xl font-semibold text-white">$24K</p>
-                                    <p class="mt-2 text-sm text-slate-400">Estimasi bulan ini</p>
+                                    <p class="text-4xl font-semibold text-white">{{ $adminActivityCount ?? 0 }}</p>
+                                    <p class="mt-2 text-sm text-slate-400">Total aktivitas admin</p>
                                 </div>
                                 <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -83,11 +83,11 @@
                         </article>
 
                         <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
-                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Engagement</p>
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">New Projects</p>
                             <div class="mt-5 flex items-end justify-between gap-4">
                                 <div>
-                                    <p class="text-4xl font-semibold text-white">87%</p>
-                                    <p class="mt-2 text-sm text-slate-400">Retensi pengguna</p>
+                                    <p class="text-4xl font-semibold text-white">{{ $latestProjects->count() ?? 0 }}</p>
+                                    <p class="mt-2 text-sm text-slate-400">Proyek terbaru</p>
                                 </div>
                                 <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -103,42 +103,24 @@
                         <section class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
                             <div class="flex items-center justify-between gap-4">
                                 <div>
-                                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Activity</p>
-                                    <h2 class="mt-2 text-2xl font-semibold text-white">Performance Overview</h2>
+                                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Admin Changes</p>
+                                    <h2 class="mt-2 text-2xl font-semibold text-white">Recent Perubahan</h2>
                                 </div>
                                 <button class="rounded-2xl bg-sky-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-400">Update</button>
                             </div>
 
-                            <div class="mt-6 space-y-4">
-                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                    <div class="flex items-center justify-between text-sm text-slate-400">
-                                        <span>Project delivery</span>
-                                        <span>84%</span>
+                            <div class="mt-6 space-y-3">
+                                @forelse($latestProjects->take(3) ?? [] as $project)
+                                    <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-4 hover:border-sky-500/40 transition">
+                                        <div class="text-sm text-slate-400">Project dibuat</div>
+                                        <h3 class="text-lg font-semibold text-white mt-1">{{ $project->title }}</h3>
+                                        <p class="text-xs text-slate-500">{{ $project->created_at->diffForHumans() }}</p>
                                     </div>
-                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
-                                        <div class="h-full w-10/12 rounded-full bg-sky-500"></div>
+                                @empty
+                                    <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/70 p-6 text-center text-slate-500">
+                                        Tidak ada perubahan terbaru.
                                     </div>
-                                </div>
-
-                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                    <div class="flex items-center justify-between text-sm text-slate-400">
-                                        <span>Server uptime</span>
-                                        <span>99.9%</span>
-                                    </div>
-                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
-                                        <div class="h-full w-full rounded-full bg-sky-500"></div>
-                                    </div>
-                                </div>
-
-                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                    <div class="flex items-center justify-between text-sm text-slate-400">
-                                        <span>Feature rollouts</span>
-                                        <span>62%</span>
-                                    </div>
-                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
-                                        <div class="h-full w-3/5 rounded-full bg-sky-500"></div>
-                                    </div>
-                                </div>
+                                @endforelse
                             </div>
                         </section>
 
@@ -174,29 +156,46 @@
                     <section class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
                         <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                                <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Analytics</p>
-                                <h2 class="mt-2 text-2xl font-semibold text-white">System snapshot</h2>
+                                <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Perubahan Admin Detail</p>
+                                <h2 class="mt-2 text-2xl font-semibold text-white">Riwayat Aktivitas Lengkap</h2>
                             </div>
                             <button class="rounded-2xl bg-slate-800/80 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-700">Export report</button>
                         </div>
 
                         <div class="mt-6 grid gap-4 md:grid-cols-3">
                             <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                <p class="text-sm text-slate-400">Active sessions</p>
-                                <p class="mt-4 text-3xl font-semibold text-white">1,248</p>
+                                <p class="text-sm text-slate-400">Projects Dibuat</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">{{ $projectCount ?? 0 }}</p>
                             </div>
                             <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                <p class="text-sm text-slate-400">New leads</p>
-                                <p class="mt-4 text-3xl font-semibold text-white">68</p>
+                                <p class="text-sm text-slate-400">Users Ditambahkan</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">{{ $userCount ?? 0 }}</p>
                             </div>
                             <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
-                                <p class="text-sm text-slate-400">Tasks completed</p>
-                                <p class="mt-4 text-3xl font-semibold text-white">42</p>
+                                <p class="text-sm text-slate-400">Aktivitas Terbaru</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">{{ $latestProjects->count() ?? 0 }}</p>
                             </div>
                         </div>
 
-                        <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-800 bg-slate-950/80 p-4">
-                            <div class="h-72 rounded-[1.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-800"></div>
+                        <div class="mt-6 space-y-3">
+                            @forelse($latestProjects ?? [] as $project)
+                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-4 hover:border-sky-500/40 transition">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h3 class="font-semibold text-white">{{ $project->title }}</h3>
+                                            <p class="text-sm text-slate-400">{{ Str::limit($project->description, 60) }}</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-slate-500">Dibuat: {{ $project->created_at->format('d M Y') }}</p>
+                                            <p class="text-xs text-slate-400">Updated: {{ $project->updated_at->diffForHumans() }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="rounded-3xl border-dashed border-slate-700 bg-slate-950/70 p-8 text-center text-slate-500">
+                                    Tidak ada aktivitas admin.
+                                </div>
+                            @endforelse
                         </div>
                     </section>
                 </main>

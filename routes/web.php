@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,7 +22,9 @@ Route::middleware('auth')->prefix('dashboard')->group(function () {
             abort_unless(auth()->user()->is_admin, 403);
             $projectCount = Project::count();
             $latestProjects = Project::latest()->take(5)->get();
-            return view('dashboard', compact('projectCount', 'latestProjects'));
+            $userCount = User::count();
+            $adminActivityCount = Project::count();
+            return view('dashboard', compact('projectCount', 'latestProjects', 'userCount', 'adminActivityCount'));
         })->name('dashboard');
         Route::resource('project', ProjectController::class)->names('project');
         Route::resource('contact', ProjectController::class)->names('contact');
