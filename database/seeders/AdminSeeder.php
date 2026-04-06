@@ -12,9 +12,10 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::create([
+\App\Models\User::create([
             'name' => 'Nata',
             'email' => 'admin@portofolio.com',
+            'is_admin' => true,
             'password' => bcrypt('password'),
         ]);
     }
