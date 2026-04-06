@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $projects = Project::all();
+    return view('welcome', compact('projects'));
 });
 
 Route::middleware('auth')->group(function () {
@@ -17,10 +19,12 @@ Route::middleware('auth')->group(function () {
     
     Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', function () {
-            return view('dashboard');
+            $projectCount = Project::count();
+            $latestProjects = Project::latest()->take(5)->get();
+            return view('dashboard', compact('projectCount', 'latestProjects'));
         })->name('dashboard');
-        Route:: Resource('project',ProjectController::class)->names('project');
-        Route:: Resource('contact',ProjectController::class)->names('contact');
+        Route::resource('project', ProjectController::class)->names('project');
+        Route::resource('contact', ProjectController::class)->names('contact');
 });
    
 

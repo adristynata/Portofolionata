@@ -1,18 +1,206 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+                <h2 class="text-2xl font-semibold text-slate-100">Dashboard Admin</h2>
+                <p class="mt-1 text-sm text-slate-400">Ringkasan proyek dan performa situs dengan nuansa biru navy.</p>
+            </div>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
+    <div class="min-h-screen bg-slate-950 text-slate-100">
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div class="grid gap-6 xl:grid-cols-[280px_1fr]">
+                <aside class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-2xl shadow-slate-950/40">
+                    <div class="mb-8">
+                        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300/80">TailAdmin Navy</div>
+                        <h1 class="mt-3 text-3xl font-semibold text-white">Admin Dashboard</h1>
+                        <p class="mt-3 text-sm leading-6 text-slate-400">Kontrol penuh atas data proyek dan aktivitas terbaru.</p>
+                    </div>
+
+                    <nav class="space-y-2">
+                        <a href="{{ route('dashboard') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-sky-200 transition hover:bg-slate-900/90 hover:text-white">Overview</a>
+                        <a href="{{ route('project.index') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900/90 hover:text-white">Projects</a>
+                        <a href="{{ route('contact.index') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900/90 hover:text-white">Contacts</a>
+                    </nav>
+
+                    <div class="mt-8 rounded-[1.75rem] border border-slate-800 bg-slate-950/90 p-5">
+                        <div class="flex items-center justify-between text-sm text-slate-400">
+                            <span>Today</span>
+                            <span class="text-sky-300">Live</span>
+                        </div>
+                        <div class="mt-4 text-3xl font-semibold text-white">72<span class="text-slate-400 text-base font-medium">%</span></div>
+                        <p class="mt-2 text-sm text-slate-500">Kinerja server dan aktivitas pengguna stabil.</p>
+                    </div>
+                </aside>
+
+                <main class="space-y-6">
+                    <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                        <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Projects</p>
+                            <div class="mt-5 flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-4xl font-semibold text-white">{{ $projectCount ?? 0 }}</p>
+                                    <p class="mt-2 text-sm text-slate-400">Total proyek aktif</p>
+                                </div>
+                                <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M13 5v6h6" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Users</p>
+                            <div class="mt-5 flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-4xl font-semibold text-white">1.2K</p>
+                                    <p class="mt-2 text-sm text-slate-400">Pengunjung bulan ini</p>
+                                </div>
+                                <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m5-4a4 4 0 11-8 0 4 4 0 018 0zm4 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Revenue</p>
+                            <div class="mt-5 flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-4xl font-semibold text-white">$24K</p>
+                                    <p class="mt-2 text-sm text-slate-400">Estimasi bulan ini</p>
+                                </div>
+                                <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 1.343-3 3 0 1.933 2.074 4.643 2.461 5.143a1 1 0 001.078 0C13.926 15.643 16 12.933 16 11c0-1.657-1.343-3-3-3z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v4m0 8v4" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="rounded-[1.75rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Engagement</p>
+                            <div class="mt-5 flex items-end justify-between gap-4">
+                                <div>
+                                    <p class="text-4xl font-semibold text-white">87%</p>
+                                    <p class="mt-2 text-sm text-slate-400">Retensi pengguna</p>
+                                </div>
+                                <div class="inline-flex h-12 w-12 items-center justify-center rounded-3xl bg-sky-500/10 text-sky-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 5.5a7 7 0 017 7v1.5a2 2 0 01-2 2H7a2 2 0 01-2-2V12.5a7 7 0 017-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="grid gap-6 xl:grid-cols-[1.3fr_1fr]">
+                        <section class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Activity</p>
+                                    <h2 class="mt-2 text-2xl font-semibold text-white">Performance Overview</h2>
+                                </div>
+                                <button class="rounded-2xl bg-sky-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-400">Update</button>
+                            </div>
+
+                            <div class="mt-6 space-y-4">
+                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                    <div class="flex items-center justify-between text-sm text-slate-400">
+                                        <span>Project delivery</span>
+                                        <span>84%</span>
+                                    </div>
+                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
+                                        <div class="h-full w-10/12 rounded-full bg-sky-500"></div>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                    <div class="flex items-center justify-between text-sm text-slate-400">
+                                        <span>Server uptime</span>
+                                        <span>99.9%</span>
+                                    </div>
+                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
+                                        <div class="h-full w-full rounded-full bg-sky-500"></div>
+                                    </div>
+                                </div>
+
+                                <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                    <div class="flex items-center justify-between text-sm text-slate-400">
+                                        <span>Feature rollouts</span>
+                                        <span>62%</span>
+                                    </div>
+                                    <div class="mt-3 h-2 overflow-hidden rounded-full bg-slate-800">
+                                        <div class="h-full w-3/5 rounded-full bg-sky-500"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                            <div class="flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Latest Projects</p>
+                                    <h2 class="mt-2 text-2xl font-semibold text-white">Recent Additions</h2>
+                                </div>
+                                <span class="rounded-2xl bg-slate-950/80 px-3 py-2 text-xs uppercase tracking-[0.2em] text-slate-400">Top 5</span>
+                            </div>
+
+                            <div class="mt-6 space-y-3">
+                                @forelse($latestProjects ?? [] as $project)
+                                    <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-4 hover:border-sky-500/40 transition">
+                                        <div class="flex items-center justify-between gap-4">
+                                            <div>
+                                                <h3 class="text-lg font-semibold text-white">{{ $project->title }}</h3>
+                                                <p class="mt-1 text-sm text-slate-400 truncate">{{ Str::limit($project->description, 80) }}</p>
+                                            </div>
+                                            <span class="text-xs uppercase tracking-[0.3em] text-slate-500">{{ $project->created_at->format('M d') }}</span>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="rounded-3xl border border-dashed border-slate-700 bg-slate-950/70 p-6 text-center text-slate-500">
+                                        Tidak ada proyek terbaru ditemukan.
+                                    </div>
+                                @endforelse
+                            </div>
+                        </section>
+                    </div>
+
+                    <section class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-xl shadow-slate-950/10">
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm uppercase tracking-[0.3em] text-slate-500">Analytics</p>
+                                <h2 class="mt-2 text-2xl font-semibold text-white">System snapshot</h2>
+                            </div>
+                            <button class="rounded-2xl bg-slate-800/80 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-700">Export report</button>
+                        </div>
+
+                        <div class="mt-6 grid gap-4 md:grid-cols-3">
+                            <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                <p class="text-sm text-slate-400">Active sessions</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">1,248</p>
+                            </div>
+                            <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                <p class="text-sm text-slate-400">New leads</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">68</p>
+                            </div>
+                            <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-5">
+                                <p class="text-sm text-slate-400">Tasks completed</p>
+                                <p class="mt-4 text-3xl font-semibold text-white">42</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 overflow-hidden rounded-[1.5rem] border border-slate-800 bg-slate-950/80 p-4">
+                            <div class="h-72 rounded-[1.5rem] bg-gradient-to-br from-slate-900 via-slate-950 to-slate-800"></div>
+                        </div>
+                    </section>
+                </main>
             </div>
         </div>
     </div>
-    
 </x-app-layout>

@@ -19,7 +19,7 @@
             
 
             <!-- Page Content -->
-            <main class="mx-auto container">
+            <main >
                 {{ $slot }}
             </main>
         </div>
