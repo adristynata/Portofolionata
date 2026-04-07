@@ -51,7 +51,7 @@
             </div>
 
             <!-- Login Form (hidden) -->
-            <div id="login-form" class="hidden absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 p-6 z-50 md:right-6" style="background: rgba(255,255,255,0.95);">
+            <div id="login-form" class="hidden absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl border border-white/20 p-6 z-50 md:right-6" style="background: rgba(255,255,255,0.95); display: none;">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">Login to Dashboard</h3>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -69,7 +69,6 @@
                     </div>
                     <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition font-medium">Log in</button>
                 </form>
-                </p>
                 <button id="login-close" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
             </div>
 
@@ -86,7 +85,7 @@
     <!-- Mobile Menu -->
     <div id="menu"
         class="hidden md:hidden px-6 pb-6 flex flex-col gap-4 text-sm"
-        style="background: rgba(10,15,44,0.95);">
+        style="background: rgba(10,15,44,0.95); display: none;">
 
         <a href="#home" class="nav-link">Home</a>
         <a href="#about" class="nav-link">About</a>
@@ -139,11 +138,16 @@
 const btn = document.getElementById('menu-btn');
 const menu = document.getElementById('menu');
 
-btn.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
-});
-
-    </script>
+if (btn && menu) {
+    btn.addEventListener('click', () => {
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    });
+}
+</script>
 
     <!-- Auth scripts -->
     <script src="https://unpkg.com/@preline/preline@3.0.0/dist/preline.min.js"></script> <!-- For transitions if needed -->
@@ -154,24 +158,44 @@ btn.addEventListener('click', () => {
         const loginForm = document.getElementById('login-form');
         const loginClose = document.getElementById('login-close');
 
-        if (loginToggle) loginToggle.addEventListener('click', () => loginForm.classList.toggle('hidden'));
-        if (mobileLoginToggle) mobileLoginToggle.addEventListener('click', () => loginForm.classList.toggle('hidden'));
-        if (loginClose) loginClose.addEventListener('click', () => loginForm.classList.add('hidden'));
+        const toggleLoginForm = () => {
+            if (!loginForm) return;
+            if (loginForm.style.display === 'none' || loginForm.style.display === '') {
+                loginForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'none';
+            }
+        };
+
+        if (loginToggle) loginToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleLoginForm();
+        });
+        if (mobileLoginToggle) mobileLoginToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleLoginForm();
+        });
+        if (loginClose) loginClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (loginForm) loginForm.style.display = 'none';
+        });
 
         // Close on outside click
         document.addEventListener('click', (e) => {
-            if (!loginForm.contains(e.target) && !loginToggle?.contains(e.target) && !mobileLoginToggle?.contains(e.target)) {
-                loginForm.classList.add('hidden');
+            if (loginForm && !loginForm.contains(e.target) && !loginToggle?.contains(e.target) && !mobileLoginToggle?.contains(e.target)) {
+                loginForm.style.display = 'none';
             }
         });
 
         // Navbar scroll behavior
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('nav');
-            if (window.scrollY > 10) {
-                navbar.style.background = 'rgba(10,15,44,0.95)';
-            } else {
-                navbar.style.background = 'rgba(10,15,44,0.7)';
+            if (navbar) {
+                if (window.scrollY > 10) {
+                    navbar.style.background = 'rgba(10,15,44,0.95)';
+                } else {
+                    navbar.style.background = 'rgba(10,15,44,0.7)';
+                }
             }
         });
     </script>

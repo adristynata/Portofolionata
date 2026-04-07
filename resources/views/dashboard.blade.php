@@ -2,8 +2,8 @@
     <x-slot name="header">
         <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
-                <h2 class="text-2xl font-semibold text-slate-100">Dashboard Admin</h2>
-                <p class="mt-1 text-sm text-slate-400">Ringkasan proyek dan performa situs dengan nuansa biru navy.</p>
+                <h2 class="text-2xl font-semibold text-slate-100">Dashboard</h2>
+                <p class="mt-1 text-sm text-slate-400">Ringkasan proyek dan performa .</p>
             </div>
         </div>
     </x-slot>
@@ -13,15 +13,14 @@
             <div class="grid gap-6 xl:grid-cols-[280px_1fr]">
                 <aside class="rounded-[2rem] border border-slate-800 bg-slate-900/95 p-6 shadow-2xl shadow-slate-950/40">
                     <div class="mb-8">
-                        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300/80">TailAdmin Navy</div>
-                        <h1 class="mt-3 text-3xl font-semibold text-white">Admin Dashboard</h1>
+                        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-sky-300/80"></div>
+                        <h1 class="mt-3 text-3xl font-semibold text-white">Dashboard</h1>
                         <p class="mt-3 text-sm leading-6 text-slate-400">Kontrol penuh atas data proyek dan aktivitas terbaru.</p>
                     </div>
 
                     <nav class="space-y-2">
                         <a href="{{ route('dashboard') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-sky-200 transition hover:bg-slate-900/90 hover:text-white">Overview</a>
                         <a href="{{ route('project.index') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900/90 hover:text-white">Projects</a>
-                        <a href="{{ route('contact.index') }}" class="block rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-slate-900/90 hover:text-white">Contacts</a>
                     </nav>
 
                     <div class="mt-8 rounded-[1.75rem] border border-slate-800 bg-slate-950/90 p-5">

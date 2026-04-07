@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->prefix('dashboard')->group(function () {
         Route::get('/', function () {
-            abort_unless(auth()->user()->is_admin, 403);
+            // Removed admin check - accessible to all logged-in users
             $projectCount = Project::count();
             $latestProjects = Project::latest()->take(5)->get();
             $userCount = User::count();
