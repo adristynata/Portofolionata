@@ -27,7 +27,7 @@
                 <a href="#contact" class="nav-link text-slate-300 hover:text-white transition-colors relative py-1">Kontak</a>
             </div>
 
-            <!-- Right: Actions (Theme Switcher & Login Admin / User Profile) -->
+            <!-- Right: Actions (Theme Switcher & Authenticated Admin Link) -->
             <div class="hidden lg:flex items-center gap-3">
                 <!-- Theme Switcher Button -->
                 <button type="button" onclick="toggleTheme()" title="Beralih Mode Gelap / Terang" class="w-10 h-10 rounded-xl bg-slate-900/80 border border-white/10 flex items-center justify-center text-amber-400 hover:bg-slate-800 transition-all shadow-inner">
@@ -36,7 +36,7 @@
                 </button>
 
                 @auth
-                    <!-- User Dropdown -->
+                    <!-- Admin Dashboard Link (Only visible when logged in) -->
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-900/80 border border-white/10 text-white hover:border-cyan-500/50">
                             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,21 +48,13 @@
                             </svg>
                         </button>
                         <div x-show="open" @click.away="open = false" x-cloak class="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl py-2 bg-slate-900 border border-slate-700/80 z-50">
-                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-800 hover:text-cyan-400 transition">Dashboard</a>
+                            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-slate-200 hover:bg-slate-800 hover:text-cyan-400 transition">Dashboard CMS</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-slate-200 hover:bg-slate-800 hover:text-rose-400 transition">Logout</button>
                             </form>
                         </div>
                     </div>
-                @else
-                    <!-- Login Admin Button -->
-                    <button id="login-toggle" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-900/90 border border-slate-700/70 text-white hover:border-cyan-500/60 hover:shadow-[0_0_20px_rgba(0,240,255,0.2)]">
-                        <svg class="w-4 h-4 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                        </svg>
-                        <span>Login Admin</span>
-                    </button>
                 @endauth
             </div>
 
@@ -82,37 +74,6 @@
         </div>
     </div>
 
-    <!-- Login Modal Dropdown Form -->
-    <div id="login-form" class="hidden absolute top-20 right-6 sm:right-12 w-80 bg-slate-900/95 backdrop-blur-2xl rounded-2xl shadow-2xl border border-slate-700/80 p-6 z-50">
-        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
-            <h3 class="text-base font-bold text-white flex items-center gap-2">
-                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-                </svg>
-                Login Admin
-            </h3>
-            <button id="login-close" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
-        </div>
-        <form method="POST" action="{{ route('login') }}" class="space-y-4">
-            @csrf
-            <div>
-                <label class="block text-xs font-semibold text-slate-400 mb-1">Email</label>
-                <input type="email" name="email" value="admin@portofolio.com" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder-slate-600" placeholder="admin@portofolio.com">
-            </div>
-            <div>
-                <label class="block text-xs font-semibold text-slate-400 mb-1">Password</label>
-                <input type="password" name="password" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder-slate-600" placeholder="••••••••">
-            </div>
-            <div class="flex items-center">
-                <input type="checkbox" name="remember" id="remember" class="rounded border-slate-700 bg-slate-950 text-cyan-500 focus:ring-cyan-500">
-                <label for="remember" class="ml-2 text-xs text-slate-400">Remember me</label>
-            </div>
-            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-all shadow-lg shadow-blue-500/25">
-                Log In
-            </button>
-        </form>
-    </div>
-
     <!-- Mobile Menu Container -->
     <div id="menu" class="hidden lg:hidden px-6 pb-6 pt-2 bg-slate-950/95 border-b border-slate-800 space-y-3">
         <a href="#about" class="block py-2 text-sm text-slate-300 hover:text-cyan-400 transition">Tentang Saya</a>
@@ -123,13 +84,11 @@
         <a href="#contact" class="block py-2 text-sm text-slate-300 hover:text-cyan-400 transition">Kontak</a>
 
         @auth
-            <a href="{{ route('dashboard') }}" class="block py-2 text-sm font-semibold text-cyan-400">Dashboard</a>
+            <a href="{{ route('dashboard') }}" class="block py-2 text-sm font-semibold text-cyan-400">Dashboard CMS</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="block w-full text-left py-2 text-sm text-rose-400">Logout</button>
             </form>
-        @else
-            <button id="mobile-login-toggle" class="w-full mt-2 py-2.5 rounded-xl text-sm font-semibold bg-slate-900 border border-slate-700 text-white">Login Admin</button>
         @endauth
     </div>
 </nav>
@@ -177,30 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btn = document.getElementById('menu-btn');
     const menu = document.getElementById('menu');
-    const loginToggle = document.getElementById('login-toggle');
-    const mobileLoginToggle = document.getElementById('mobile-login-toggle');
-    const loginForm = document.getElementById('login-form');
-    const loginClose = document.getElementById('login-close');
 
     if (btn && menu) {
         btn.addEventListener('click', () => {
             menu.classList.toggle('hidden');
         });
     }
-
-    const toggleLogin = (e) => {
-        e.stopPropagation();
-        if (loginForm) loginForm.classList.toggle('hidden');
-    };
-
-    if (loginToggle) loginToggle.addEventListener('click', toggleLogin);
-    if (mobileLoginToggle) mobileLoginToggle.addEventListener('click', toggleLogin);
-    if (loginClose) loginClose.addEventListener('click', () => loginForm?.classList.add('hidden'));
-
-    document.addEventListener('click', (e) => {
-        if (loginForm && !loginForm.contains(e.target) && !loginToggle?.contains(e.target) && !mobileLoginToggle?.contains(e.target)) {
-            loginForm.classList.add('hidden');
-        }
-    });
 });
 </script>
