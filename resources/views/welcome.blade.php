@@ -4,51 +4,51 @@
     @include('landing.navbar')
     
     {{-- === 1. HERO SECTION (#home) === --}}
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-[#070b19]">
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-[#070b19]">
         {{-- Background Glow & Grid Effects --}}
         <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
-        <div class="absolute top-1/4 -right-20 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 -left-20 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 -right-20 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 -left-20 w-80 sm:w-96 h-80 sm:h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-6 sm:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
                 
                 {{-- Left Side: Texts & Action Buttons --}}
-                <div class="lg:col-span-7 flex flex-col gap-6 text-left">
+                <div class="lg:col-span-7 flex flex-col gap-5 sm:gap-6 text-left">
                     
                     {{-- Pill Badge --}}
                     <div>
-                        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-900/90 border border-cyan-500/40 text-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
+                        <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider bg-slate-900/90 border border-cyan-500/40 text-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
                             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                             FULLSTACK SOFTWARE ENGINEER
                         </span>
                     </div>
 
                     {{-- Main Title --}}
-                    <h1 class="text-4xl sm:text-6xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
                         Halo, Saya <br>
                         <span class="text-gradient-cyan-purple drop-shadow-sm">{{ $profile->name ?? 'Adristy Akiko Yukinata' }}</span>
                     </h1>
 
                     {{-- Subheading --}}
-                    <h2 class="text-xl sm:text-2xl font-bold text-slate-300">
+                    <h2 class="text-lg sm:text-2xl font-bold text-slate-300">
                         {{ $profile->role_title ?? 'Web Developer' }}
                     </h2>
 
                     {{-- Bio / Intro Paragraph --}}
-                    <p class="text-base sm:text-lg text-slate-400 font-normal leading-relaxed max-w-2xl">
+                    <p class="text-sm sm:text-lg text-slate-400 font-normal leading-relaxed max-w-2xl">
                         {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan aplikasi web modern, responsif, dan berperforma tinggi.' }}
                     </p>
 
                     {{-- CTA Buttons --}}
-                    <div class="flex flex-wrap items-center gap-4 pt-2">
-                        <a href="#project" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-600/30 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
+                        <a href="#project" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-600/30 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all text-center">
                             <span>Lihat Hasil Karya</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                             </svg>
                         </a>
-                        <a href="#contact" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/60 hover:text-white hover:bg-slate-800 transition-all shadow-inner">
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/60 hover:text-white hover:bg-slate-800 transition-all shadow-inner text-center">
                             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                             </svg>
@@ -57,7 +57,7 @@
                     </div>
 
                     {{-- Dynamic Social Media Links (Editable via Admin Dashboard) --}}
-                    <div class="flex items-center gap-3 pt-4">
+                    <div class="flex items-center gap-3 pt-3 sm:pt-4">
                         @if(!empty($profile->github_url))
                             <a href="{{ $profile->github_url }}" target="_blank" title="GitHub" class="w-10 h-10 rounded-full bg-slate-900/90 border border-slate-700/80 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:scale-110 transition-all">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
@@ -85,15 +85,15 @@
 
                 </div>
 
-                {{-- Right Side: Profile Photo Frame matching Screenshot 1 --}}
-                <div class="lg:col-span-5 flex justify-center">
+                {{-- Right Side: Profile Photo Frame --}}
+                <div class="lg:col-span-5 flex justify-center mt-6 lg:mt-0">
                     <div class="relative group">
                         
                         {{-- Neon Outer Glow --}}
                         <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 blur-xl opacity-80 group-hover:opacity-100 transition duration-500 shadow-[0_0_50px_rgba(0,240,255,0.4)]"></div>
 
                         {{-- Photo Frame Container --}}
-                        <div class="relative w-[300px] sm:w-[340px] h-[370px] sm:h-[420px] rounded-3xl overflow-hidden bg-slate-900 border-2 border-cyan-400/80 shadow-2xl">
+                        <div class="relative w-[270px] sm:w-[320px] lg:w-[350px] h-[340px] sm:h-[400px] lg:h-[430px] rounded-3xl overflow-hidden bg-slate-900 border-2 border-cyan-400/80 shadow-2xl">
                             <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
                         </div>
 
@@ -105,32 +105,32 @@
     </section>
 
     {{-- === 2. ABOUT SECTION (#about) === --}}
-    <section id="about" class="relative py-24 bg-[#090e23] border-t border-slate-800/80">
+    <section id="about" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">TENTANG SAYA</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Dedikasi Dalam Pengembangan Aplikasi Web
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                 
                 {{-- Left Column: Bio & 4 Detail Info Cards --}}
                 <div class="lg:col-span-7 flex flex-col gap-6">
-                    <h3 class="text-2xl font-bold text-white">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">
                         Mengembangkan Solusi Software Berkualitas & Berperforma Tinggi
                     </h3>
 
-                    <p class="text-slate-300 leading-relaxed text-base">
-                        {{ $profile->bio ?? 'Saya adalah junior web developer dari SMK Negeri 1 Bangsri yang passionate dalam menciptakan pengalaman digital yang menarik dan fungsional. Dengan fokus pada pengembangan web modern dan desain UI/UX, saya senang mengubah ide-ide kreatif menjadi realitas melalui kode yang bersih dan efisien. Saya percaya bahwa teknologi harus mudah diakses dan memberikan nilai nyata bagi pengguna.' }}
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base whitespace-pre-line">
+                        {{ $profile->bio ?? 'Saya adalah junior web developer dari SMK Negeri 1 Bangsri yang passionate dalam menciptakan pengalaman digital yang menarik dan fungsional.' }}
                     </p>
 
                     {{-- 2x2 Information Grid Cards --}}
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 sm:pt-4">
                         
                         {{-- Card 1: Pendidikan --}}
                         <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition">
@@ -139,7 +139,7 @@
                             </div>
                             <div>
                                 <span class="block text-xs text-slate-400 font-semibold">Pendidikan</span>
-                                <span class="text-sm font-bold text-white">{{ $profile->education ?? 'Teknik Informatika / RPL' }}</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">{{ $profile->education ?? 'Teknik Informatika / RPL' }}</span>
                             </div>
                         </div>
 
@@ -150,19 +150,19 @@
                             </div>
                             <div>
                                 <span class="block text-xs text-slate-400 font-semibold">Fokus Utama</span>
-                                <span class="text-sm font-bold text-white">{{ $profile->focus ?? 'Web & Backend Dev' }}</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">{{ $profile->focus ?? 'Web & Backend Dev' }}</span>
                             </div>
                         </div>
 
                         {{-- Card 3: Email --}}
-                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition">
+                        <div class="dark-glass-card p-4 rounded-xl flex items-center gap-3.5 border border-white/10 hover:border-cyan-500/40 transition overflow-hidden">
                             <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
-                            <div class="overflow-hidden">
+                            <div class="overflow-hidden min-w-0">
                                 <span class="block text-xs text-slate-400 font-semibold">Email</span>
-                                <span class="text-sm font-bold text-white truncate block" title="{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}">
-                                    {{ Str::limit($profile->email ?? 'adristyakikoyukinata@gmail.com', 20) }}
+                                <span class="text-xs sm:text-sm font-bold text-white truncate block" title="{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}">
+                                    {{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}
                                 </span>
                             </div>
                         </div>
@@ -174,38 +174,38 @@
                             </div>
                             <div>
                                 <span class="block text-xs text-slate-400 font-semibold">Lokasi</span>
-                                <span class="text-sm font-bold text-white">{{ $profile->location ?? 'Jepara' }}</span>
+                                <span class="text-xs sm:text-sm font-bold text-white">{{ $profile->location ?? 'Jepara' }}</span>
                             </div>
                         </div>
 
                     </div>
                 </div>
 
-                {{-- Right Column: 4 Stat Cards matching Screenshot 2 --}}
+                {{-- Right Column: 4 Stat Cards --}}
                 <div class="lg:col-span-5 grid grid-cols-2 gap-4">
                     
                     {{-- Stat 1 --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition">
-                        <span class="text-4xl font-black text-cyan-400 mb-1">{{ max(1, count($projects)) }}+</span>
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">PROYEK SELESAI</span>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition">
+                        <span class="text-3xl sm:text-4xl font-black text-cyan-400 mb-1">{{ max(1, count($projects)) }}+</span>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">PROYEK SELESAI</span>
                     </div>
 
                     {{-- Stat 2 --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-purple-500/50 transition">
-                        <span class="text-4xl font-black text-purple-400 mb-1">{{ max(1, count($skills)) }}+</span>
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">SKILL & TOOLS</span>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-purple-500/50 transition">
+                        <span class="text-3xl sm:text-4xl font-black text-purple-400 mb-1">{{ max(1, count($skills)) }}+</span>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">SKILL & TOOLS</span>
                     </div>
 
                     {{-- Stat 3 --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-pink-500/50 transition">
-                        <span class="text-4xl font-black text-pink-400 mb-1">{{ max(1, count($certificates)) }}+</span>
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">SERTIFIKASI</span>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-pink-500/50 transition">
+                        <span class="text-3xl sm:text-4xl font-black text-pink-400 mb-1">{{ max(1, count($certificates)) }}+</span>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">SERTIFIKASI</span>
                     </div>
 
                     {{-- Stat 4 --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-emerald-500/50 transition">
-                        <span class="text-4xl font-black text-emerald-400 mb-1">100%</span>
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">CLEAN CODE</span>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 text-center flex flex-col items-center justify-center hover:border-emerald-500/50 transition">
+                        <span class="text-3xl sm:text-4xl font-black text-emerald-400 mb-1">100%</span>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">CLEAN CODE</span>
                     </div>
 
                 </div>
@@ -215,25 +215,25 @@
     </section>
 
     {{-- === 3. SKILLS SECTION (#skill) === --}}
-    <section id="skill" class="relative py-24 bg-[#070b19]">
+    <section id="skill" class="relative py-16 sm:py-24 bg-[#070b19]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">KEAHLIAN TEKNIS</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Teknologi & Bahasa Pemrograman
                 </h2>
             </div>
 
             {{-- Dynamic Skill Cards Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 @forelse ($skills as $skill)
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                                 </div>
                                 <div>
@@ -248,11 +248,10 @@
                         </div>
                     </div>
                 @empty
-                    {{-- Default sample fallback --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                                 </div>
                                 <div>
@@ -272,37 +271,37 @@
     </section>
 
     {{-- === 4. PROJECTS SECTION (#project) === --}}
-    <section id="project" class="relative py-24 bg-[#090e23] border-t border-slate-800/80">
+    <section id="project" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-10">
+            <div class="text-center mb-8 sm:mb-10">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">PORTOFOLIO KARYA</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Proyek Yang Telah Dikembangkan
                 </h2>
             </div>
 
             {{-- Category Filter Pill --}}
-            <div class="flex justify-center mb-12">
+            <div class="flex justify-center mb-8 sm:mb-12">
                 <button type="button" class="px-6 py-2.5 rounded-full text-xs font-extrabold text-white bg-cyan-500 shadow-[0_0_20px_rgba(0,240,255,0.4)] transition hover:bg-cyan-400">
                     Semua Proyek
                 </button>
             </div>
 
             {{-- Dynamic Projects Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 
                 @forelse ($projects as $project)
                     <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
                         <div>
                             {{-- Image Header --}}
-                            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
                                 @if($project->image)
                                     <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                                 @else
-                                    <div class="w-full h-full flex items-center justify-center text-slate-600 bg-slate-900 font-bold">
+                                    <div class="w-full h-full flex items-center justify-center text-slate-600 bg-slate-900 font-bold text-xs">
                                         No Image
                                     </div>
                                 @endif
@@ -312,14 +311,14 @@
                             </div>
 
                             {{-- Content --}}
-                            <div class="p-6">
-                                <h3 class="text-lg font-bold text-white mb-2 leading-snug">
+                            <div class="p-5 sm:p-6">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                                     {{ $project->title }}
                                 </h3>
-                                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                                <p class="text-xs text-slate-400 mb-4 leading-relaxed line-clamp-3">
                                     {{ $project->description }}
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
+                                <div class="flex flex-wrap gap-2 mb-2">
                                     <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">laravel</span>
                                     <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">tailwind</span>
                                 </div>
@@ -327,7 +326,7 @@
                         </div>
 
                         {{-- Footer Actions --}}
-                        <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/60">
+                        <div class="px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between border-t border-slate-800/60">
                             @if($project->demo_link)
                                 <a href="{{ $project->demo_link }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300">
                                     <span>Detail Proyek</span>
@@ -348,30 +347,29 @@
                         </div>
                     </div>
                 @empty
-                    {{-- Default Sample Card --}}
-                    <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between max-w-md">
+                    <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
                         <div>
-                            <div class="relative h-52 w-full overflow-hidden bg-slate-900">
+                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
                                 <img src="{{ asset('images/foto-saya.jpg') }}" alt="Website E Commerce Tote Bag Art Terra" class="w-full h-full object-cover">
                                 <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[11px] font-extrabold bg-cyan-500 text-white shadow-md">
                                     Web App
                                 </span>
                             </div>
-                            <div class="p-6">
-                                <h3 class="text-lg font-bold text-white mb-2">
+                            <div class="p-5 sm:p-6">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-2">
                                     Website E Commerce Tote Bag Art Terra
                                 </h3>
                                 <p class="text-xs text-slate-400 mb-4 leading-relaxed">
                                     Website Ini adalah E commerce yang menjual tote bag ramah lingkungan
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
+                                <div class="flex flex-wrap gap-2 mb-2">
                                     <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">laravel</span>
                                     <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">tailwind</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-800/60">
+                        <div class="px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between border-t border-slate-800/60">
                             <span class="text-xs font-bold text-cyan-400 flex items-center gap-1 cursor-pointer">
                                 <span>Detail Proyek</span>
                                 <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -388,24 +386,24 @@
     </section>
 
     {{-- === 5. EXPERIENCE & TIMELINE SECTION (#pengalaman) === --}}
-    <section id="pengalaman" class="relative py-24 bg-[#070b19]">
+    <section id="pengalaman" class="relative py-16 sm:py-24 bg-[#070b19]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">PENGALAMAN & REKAM JEJAK</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Riwayat Pendidikan & Organisasi
                 </h2>
             </div>
 
             {{-- Dynamic Timeline Cards --}}
-            <div class="max-w-4xl mx-auto relative pl-6 border-l-2 border-cyan-500/40 space-y-8">
+            <div class="max-w-4xl mx-auto relative pl-4 sm:pl-6 border-l-2 border-cyan-500/40 space-y-6 sm:space-y-8">
                 @forelse ($experiences as $exp)
                     <div class="relative">
-                        <div class="absolute -left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
-                        <div class="dark-glass-card p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                        <div class="absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
+                        <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                                 <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
                                     {{ $exp->type }}
@@ -415,11 +413,11 @@
                                     <span>{{ $exp->period }}</span>
                                 </span>
                             </div>
-                            <h3 class="text-xl font-bold text-cyan-400">
+                            <h3 class="text-lg sm:text-xl font-bold text-cyan-400">
                                 {{ $exp->title }}
                             </h3>
                             @if($exp->organization)
-                                <h4 class="text-sm font-semibold text-slate-300 mb-2">
+                                <h4 class="text-xs sm:text-sm font-semibold text-slate-300 mb-2">
                                     {{ $exp->organization }}
                                 </h4>
                             @endif
@@ -431,10 +429,9 @@
                         </div>
                     </div>
                 @empty
-                    {{-- Default Fallback --}}
                     <div class="relative">
-                        <div class="absolute -left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
-                        <div class="dark-glass-card p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
+                        <div class="absolute -left-[23px] sm:-left-[31px] top-4 w-4 h-4 rounded-full bg-cyan-400 border-4 border-[#070b19] shadow-[0_0_10px_#00f0ff]"></div>
+                        <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
                             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
                                 <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
                                     PENDIDIKAN
@@ -444,10 +441,10 @@
                                     <span>2024 – 2026</span>
                                 </span>
                             </div>
-                            <h3 class="text-xl font-bold text-cyan-400">
+                            <h3 class="text-lg sm:text-xl font-bold text-cyan-400">
                                 Web Developer
                             </h3>
-                            <h4 class="text-sm font-semibold text-slate-300 mb-2">
+                            <h4 class="text-xs sm:text-sm font-semibold text-slate-300 mb-2">
                                 Organisasi
                             </h4>
                             <p class="text-xs text-slate-400 leading-relaxed">
@@ -462,24 +459,24 @@
     </section>
 
     {{-- === 6. CERTIFICATIONS SECTION (#sertifikat) === --}}
-    <section id="sertifikat" class="relative py-24 bg-[#090e23] border-t border-slate-800/80">
+    <section id="sertifikat" class="relative py-16 sm:py-24 bg-[#090e23] border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">SERTIFIKASI & LISENSI</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Pencapaian & Bukti Kompetensi
                 </h2>
             </div>
 
             {{-- Certificate Cards Grid --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                 @forelse ($certificates as $cert)
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col sm:flex-row items-start gap-5">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
                         @if($cert->image)
-                            <div class="w-full sm:w-28 h-24 rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 cursor-pointer group/img" onclick="openCertModal('{{ asset('storage/' . $cert->image) }}', '{{ $cert->title }}')">
+                            <div class="w-full sm:w-28 h-40 sm:h-24 rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shrink-0 cursor-pointer group/img" onclick="openCertModal('{{ asset('storage/' . $cert->image) }}', '{{ $cert->title }}')">
                                 <img src="{{ asset('storage/' . $cert->image) }}" alt="{{ $cert->title }}" class="w-full h-full object-cover group-hover/img:scale-105 transition duration-300">
                             </div>
                         @else
@@ -487,9 +484,9 @@
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2 0h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                             </div>
                         @endif
-                        <div class="flex-1">
+                        <div class="flex-1 w-full">
                             <span class="text-[10px] font-extrabold uppercase text-cyan-400 tracking-wider">{{ $cert->type }}</span>
-                            <h3 class="text-lg font-bold text-white mt-1">{{ $cert->title }}</h3>
+                            <h3 class="text-base sm:text-lg font-bold text-white mt-1">{{ $cert->title }}</h3>
                             <p class="text-xs text-slate-400 mt-1 mb-3">{{ $cert->issuer }}</p>
                             <div class="flex flex-wrap items-center gap-3">
                                 <span class="inline-block text-[11px] font-semibold text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">
@@ -511,13 +508,13 @@
                         </div>
                     </div>
                 @empty
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex items-start gap-4">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2 0h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
                         </div>
                         <div>
                             <span class="text-[10px] font-extrabold uppercase text-cyan-400 tracking-wider">SERTIFIKASI KOMPETENSI</span>
-                            <h3 class="text-lg font-bold text-white mt-1">Junior Web Developer</h3>
+                            <h3 class="text-base sm:text-lg font-bold text-white mt-1">Junior Web Developer</h3>
                             <p class="text-xs text-slate-400 mt-1 mb-3">SMK Negeri 1 Bangsri & Partners</p>
                             <span class="inline-block text-[11px] font-semibold text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">
                                 Tahun 2024
@@ -547,60 +544,60 @@
     </section>
 
     {{-- === 7. CONTACT SECTION (#contact) === --}}
-    <section id="contact" class="relative py-24 bg-[#070b19]">
+    <section id="contact" class="relative py-16 sm:py-24 bg-[#070b19]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:mb-16">
                 <span class="text-xs font-black uppercase tracking-widest text-cyan-400">KONTAK</span>
                 <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
                     Hubungi Saya
                 </h2>
-                <p class="text-slate-400 text-sm mt-2">
+                <p class="text-slate-400 text-xs sm:text-sm mt-2">
                     Siap berkolaborasi untuk membuat proyek web Anda berikutnya.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
                 
                 {{-- Left: Quick Contact Info --}}
-                <div class="lg:col-span-5 flex flex-col gap-6">
+                <div class="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
                     
                     {{-- Email --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
                         <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         </div>
-                        <div>
+                        <div class="overflow-hidden min-w-0">
                             <span class="block text-xs font-semibold text-slate-400">Email</span>
-                            <a href="mailto:{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}" class="text-sm font-bold text-white hover:text-cyan-400 transition">
+                            <a href="mailto:{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}" class="text-xs sm:text-sm font-bold text-white hover:text-cyan-400 transition truncate block">
                                 {{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}
                             </a>
                         </div>
                     </div>
 
                     {{-- WhatsApp / Phone --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                         </div>
                         <div>
                             <span class="block text-xs font-semibold text-slate-400">Telepon / WhatsApp</span>
-                            <a href="{{ $profile->whatsapp_url ?? 'https://wa.me/6289639685566' }}" target="_blank" class="text-sm font-bold text-white hover:text-emerald-400 transition">
+                            <a href="{{ $profile->whatsapp_url ?? 'https://wa.me/6289639685566' }}" target="_blank" class="text-xs sm:text-sm font-bold text-white hover:text-emerald-400 transition">
                                 {{ $profile->phone ?? '+62 896-3968-5566' }}
                             </a>
                         </div>
                     </div>
 
                     {{-- Location --}}
-                    <div class="dark-glass-card p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
                         <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
                         <div>
                             <span class="block text-xs font-semibold text-slate-400">Lokasi</span>
-                            <span class="text-sm font-bold text-white">
+                            <span class="text-xs sm:text-sm font-bold text-white">
                                 {{ $profile->location ?? 'Jepara, Jawa Tengah, Indonesia' }}
                             </span>
                         </div>
@@ -617,9 +614,9 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="dark-glass-card p-8 rounded-2xl border border-slate-800 space-y-6">
+                    <form action="{{ route('contact.store') }}" method="POST" class="dark-glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-5 sm:space-y-6">
                         @csrf
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 mb-2">Nama Lengkap</label>
                                 <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 placeholder-slate-600" placeholder="Masukkan nama Anda">
