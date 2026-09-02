@@ -74,7 +74,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <input id="email" type="email" name="email" value="{{ old('email', 'admin@portofolio.com') }}" required autofocus class="w-full pl-11 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder-slate-600 transition" placeholder="admin@portofolio.com">
+                        <input id="email" type="email" name="email" value="{{ old('email', 'adristyakikoyukinata@gmail.com') }}" required autofocus class="w-full pl-11 pr-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 placeholder-slate-600 transition" placeholder="adristyakikoyukinata@gmail.com">
                     </div>
                 </div>
 
