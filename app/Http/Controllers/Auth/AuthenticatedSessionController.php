@@ -14,10 +14,10 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(): View|RedirectResponse
     {
         if (Auth::check()) {
-            return view('dashboard');
+            return redirect()->route('dashboard');
         }
 
         return view('auth.login');
@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect(route('dashboard'));
+        return redirect()->to(route('dashboard'));
     }
 
     /**

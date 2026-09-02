@@ -13,7 +13,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::latest()->get();
         return view('dashboard.project.index', compact('projects'));
     }
 
@@ -30,18 +30,23 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg|max:5120',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'github_link' => 'nullable',
-            'demo_link' => 'nullable',
+            'description' => 'required|string',
+            'github_link' => 'nullable|string|max:255',
+            'demo_link' => 'nullable|string|max:255',
         ]);
 
+        $data = $request->only(['title', 'description', 'github_link', 'demo_link']);
 
-        $data['image'] = $request->file('image')->store('projects', 'public');
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('projects', 'public');
+        }
+
         Project::create($data);
-        return redirect()->route('project.index')->with('success', 'Project created successfully');
+
+        return redirect()->route('project.index')->with('success', 'Proyek berhasil ditambahkan!');
     }
 
     /**
@@ -67,13 +72,15 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
-        $data = $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:1024',
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:5120',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'github_link' => 'nullable',
-            'demo_link' => 'nullable',
+            'description' => 'required|string',
+            'github_link' => 'nullable|string|max:255',
+            'demo_link' => 'nullable|string|max:255',
         ]);
+
+        $data = $request->only(['title', 'description', 'github_link', 'demo_link']);
 
         if ($request->hasFile('image')) {
             if ($project->image) {
@@ -83,7 +90,8 @@ class ProjectController extends Controller
         }
 
         $project->update($data);
-        return redirect()->route('project.index')->with('success', 'Project updated successfully');
+
+        return redirect()->route('project.index')->with('success', 'Proyek berhasil diperbarui!');
     }
 
     /**
@@ -91,12 +99,13 @@ class ProjectController extends Controller
      */
     public function destroy(string $id)
     {
-        $project = Project::find($id);
+        $project = Project::findOrFail($id);
 
         if ($project->image) {
             Storage::disk('public')->delete($project->image);
         }
         $project->delete();
-        return redirect()->route('project.index')->with('success', 'Project deleted successfully');
+
+        return redirect()->route('project.index')->with('success', 'Proyek berhasil dihapus!');
     }
 }

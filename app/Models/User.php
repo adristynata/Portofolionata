@@ -23,6 +23,18 @@ class User extends Authenticatable
         'email',
         'is_admin',
         'password',
+        'role_title',
+        'hero_bio',
+        'bio',
+        'education',
+        'focus',
+        'phone',
+        'location',
+        'photo',
+        'github_url',
+        'linkedin_url',
+        'instagram_url',
+        'whatsapp_url',
     ];
 
     /**

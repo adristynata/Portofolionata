@@ -1,316 +1,181 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Projects') }}
-        </h2>
-    </x-slot>
+<x-cms-layout>
+    
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Kelola Proyek</h1>
+            <p class="text-slate-400 text-sm mt-1">Tambah, edit, dan hapus karya portofolio Anda.</p>
+        </div>
+        <button type="button" onclick="document.getElementById('modal-add-project').classList.remove('hidden')" class="px-5 py-2.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition shadow-lg shadow-blue-500/25 flex items-center gap-2">
+            <span>+ Tambah Proyek</span>
+        </button>
+    </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="flex justify-end">
-                <button type="button" data-drawer-target="drawer-right-example" data-drawer-show="drawer-right-example"
-                    data-drawer-placement="right"
-                    class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Tambah</button>
+    @if ($errors->any())
+        <div class="mb-6 p-4 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-sm font-semibold space-y-1">
+            <div class="font-bold flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                <span>Gagal Menyimpan Proyek:</span>
             </div>
+            <ul class="list-disc list-inside text-xs pl-6">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-            <div
-                class="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default bg-white rounded-lg mt-4">
-                <table class="w-full text-sm text-left rtl:text-right text-body">
-                    <thead class="bg-neutral-100 border-b border-default">
-                        <tr>
-
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Gambar
-                            </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Judul
-                            </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Deskripsi
-                            </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Github
-                            </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Link Demo
-                            </th>
-                            <th scope="col" class="px-6 py-3 font-medium">
-                                Aksi
-                            </th>
+    <!-- Project List Table -->
+    <div class="bg-[#0b1026] rounded-2xl border border-slate-800/80 overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-[#090d21] border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-slate-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-4">Gambar</th>
+                        <th scope="col" class="px-6 py-4">Judul</th>
+                        <th scope="col" class="px-6 py-4">Deskripsi</th>
+                        <th scope="col" class="px-6 py-4">Link GitHub</th>
+                        <th scope="col" class="px-6 py-4">Link Demo</th>
+                        <th scope="col" class="px-6 py-4 text-right">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                    @forelse ($projects as $item)
+                        <tr class="hover:bg-slate-900/40 transition">
+                            <td class="px-6 py-4">
+                                @if($item->image)
+                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="w-16 h-12 object-cover rounded-xl border border-slate-800">
+                                @else
+                                    <div class="w-16 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-600 font-bold text-xs">
+                                        No Image
+                                    </div>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4 font-bold text-white whitespace-nowrap">
+                                {{ $item->title }}
+                            </td>
+                            <td class="px-6 py-4 text-xs text-slate-400 max-w-xs truncate">
+                                {{ $item->description }}
+                            </td>
+                            <td class="px-6 py-4 text-xs text-cyan-400 truncate max-w-[150px]">
+                                {{ $item->github_link ?? '-' }}
+                            </td>
+                            <td class="px-6 py-4 text-xs text-purple-400 truncate max-w-[150px]">
+                                {{ $item->demo_link ?? '-' }}
+                            </td>
+                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                                <button type="button" onclick="editProject({{ json_encode($item) }})" class="px-3 py-1.5 rounded-lg text-xs font-bold text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 transition mr-2">
+                                    Edit
+                                </button>
+                                <form action="{{ route('project.destroy', $item->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-3 py-1.5 rounded-lg text-xs font-bold text-rose-400 bg-rose-500/10 border border-rose-500/30 hover:bg-rose-500/20 transition">
+                                        Hapus
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($projects as $item)
-                            <tr class="odd:bg-white even:bg-neutral-100 border-b border-default">
-                                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
-                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
-                                        class="w-20 h-20 object-cover rounded-lg">
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $item->title }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $item->description }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $item->github_link }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $item->demo_link }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button type="button"
-                                        data-drawer-target="drawer-edit-example"
-                                        data-drawer-show="drawer-edit-example"
-                                        data-drawer-placement="right"
-                                        data-project="{{ $item }}"
-                                        onclick="openEditDrawer(this)"
-                                        class="font-medium text-fg-brand hover:underline">Edit</button>
-                                    <button
-                                        data-modal-target="default-modal"
-                                        data-modal-toggle="default-modal"
-                                        data-project-id="{{ $item->id }}"
-                                        onclick="setDeleteAction(this)"
-                                        class="font-medium text-fg-brand hover:underline ms-3">Hapus</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-6 py-12 text-center text-slate-500 text-sm font-medium italic">
+                                Belum ada proyek. Klik "+ Tambah Proyek" untuk membuat proyek baru.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 
-
-    {{-- dialog delete --}}
-    <div id="default-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                <!-- Modal header -->
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Hapus Project
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="default-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5 space-y-4">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        Apakah anda yakin ingin menghapus project ini?
-                    </p>
-                </div>
-                <!-- Modal footer -->
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="default-modal" type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Batal</button>
-                    <form id="delete-form" action="" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button data-modal-hide="default-modal" type="submit"
-                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Hapus</button>
-                    </form>
-                </div>
+    <!-- Modal Tambah Proyek -->
+    <div id="modal-add-project" class="{{ $errors->any() ? '' : 'hidden' }} fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-[#0b1026] border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                <h3 class="text-lg font-bold text-white">Tambah Proyek Baru</h3>
+                <button type="button" onclick="document.getElementById('modal-add-project').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
             </div>
+            <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                @csrf
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Judul Proyek</label>
+                    <input type="text" name="title" value="{{ old('title') }}" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="e.g. E-Commerce Tote Bag">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Deskripsi Proyek</label>
+                    <textarea name="description" rows="4" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Deskripsi mengenai proyek Anda...">{{ old('description') }}</textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Tautan GitHub (Opsional)</label>
+                        <input type="url" name="github_link" value="{{ old('github_link') }}" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://github.com/...">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Tautan Demo (Opsional)</label>
+                        <input type="url" name="demo_link" value="{{ old('demo_link') }}" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="https://demo.com/...">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Gambar Preview Proyek (PNG, JPG, WEBP, maks 5MB)</label>
+                    <input type="file" name="image" required accept="image/*" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500 file:text-white">
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="document.getElementById('modal-add-project').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 hover:text-white">Batal</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400">Simpan Proyek</button>
+                </div>
+            </form>
         </div>
     </div>
 
-
-    <!-- drawer component -->
-    <div id="drawer-right-example"
-        class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
-        tabindex="-1" aria-labelledby="drawer-right-label">
-        <h5 id="drawer-right-label"
-            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
-                class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>Tambah Project</h5>
-        <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-            <span class="sr-only">Close menu</span>
-        </button>
-
-        {{-- form --}}
-        <form class="space-y-4" action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <!-- Image -->
-            <div x-data="{ previewUrl: null }">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Unggah
-                    Gambar</label>
-                <input name="image"
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="user_avatar" type="file" accept="image/*"
-                    @change="previewUrl = $event.target.files[0] ? URL.createObjectURL($event.target.files[0]) : null">
-                <!-- Preview -->
-                <div x-show="previewUrl" class="mt-3">
-                    <img :src="previewUrl" alt="Preview"
-                        class="w-full max-h-48 object-cover rounded-lg border border-gray-300 dark:border-gray-600">
+    <!-- Modal Edit Proyek -->
+    <div id="modal-edit-project" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-[#0b1026] border border-slate-800 rounded-2xl w-full max-w-lg p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+                <h3 class="text-lg font-bold text-white">Edit Proyek</h3>
+                <button type="button" onclick="document.getElementById('modal-edit-project').classList.add('hidden')" class="text-slate-400 hover:text-white text-xl leading-none">&times;</button>
+            </div>
+            <form id="form-edit-project" action="" method="POST" enctype="multipart/form-data" class="space-y-4">
+                @csrf
+                @method('PUT')
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Judul Proyek</label>
+                    <input type="text" id="edit-title" name="title" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
                 </div>
-            </div>
-            <!-- Title -->
-            <div class="mb-5">
-                <label for="title"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
-                <input type="text" id="title" name="title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan judul" required />
-            </div>
-            <!-- Description -->
-            <div>
-                <label for="message"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
-                <textarea id="message" rows="4" name="description"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukkan deskripsi" required></textarea>
-            </div>
-
-            <!-- Github -->
-            <div>
-                <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Tautan GitHub</label>
-                <input type="text" id="github" name="github_link"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan tautan github" />
-            </div>
-
-            <!-- Link -->
-            <div>
-                <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Tautan Demo</label>
-                <input type="text" id="link" name="demo_]link"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan tautan demo" />
-            </div>
-
-            <!-- Submit -->
-            <button type="submit"
-                class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-                Submit
-            </button>
-        </form>
-    </div>
-
-    <!-- Edit drawer component -->
-    <div id="drawer-edit-example"
-        class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 dark:bg-gray-800"
-        tabindex="-1" aria-labelledby="drawer-edit-label">
-        <h5 id="drawer-edit-label"
-            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
-                class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>Edit Project</h5>
-        <button type="button" data-drawer-hide="drawer-edit-example" aria-controls="drawer-edit-example"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-            <span class="sr-only">Close menu</span>
-        </button>
-
-        {{-- form --}}
-        <form id="edit-form" class="space-y-4" action="" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <!-- Image -->
-            <div>
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="edit_image">Unggah
-                    Gambar (Abaikan jika tidak diubah)</label>
-                <input name="image" id="edit_image" type="file" accept="image/*"
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    onchange="document.getElementById('edit_preview').src = window.URL.createObjectURL(this.files[0]); document.getElementById('preview-container').classList.remove('hidden');">
-                <!-- Preview -->
-                <div id="preview-container" class="mt-3 hidden">
-                    <img id="edit_preview" src="" alt="Preview"
-                        class="w-full max-h-48 object-cover rounded-lg border border-gray-300 dark:border-gray-600">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Deskripsi Proyek</label>
+                    <textarea id="edit-description" name="description" rows="4" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500"></textarea>
                 </div>
-            </div>
-            <!-- Title -->
-            <div class="mb-5">
-                <label for="edit_title"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
-                <input type="text" id="edit_title" name="title"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan judul" required />
-            </div>
-            <!-- Description -->
-            <div>
-                <label for="edit_description"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi</label>
-                <textarea id="edit_description" rows="4" name="description"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukkan deskripsi" required></textarea>
-            </div>
-
-            <!-- Github -->
-            <div>
-                <label for="edit_github"
-                    class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Tautan GitHub</label>
-                <input type="text" id="edit_github" name="github"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan tautan github" />
-            </div>
-
-            <!-- Link -->
-            <div>
-                <label for="edit_link" class="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Tautan
-                    Demo</label>
-                <input type="text" id="edit_link" name="link"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Masukan tautan demo" />
-            </div>
-
-            <!-- Submit -->
-            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-                Simpan Perubahan
-            </button>
-        </form>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Tautan GitHub (Opsional)</label>
+                        <input type="url" id="edit-github_link" name="github_link" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">Tautan Demo (Opsional)</label>
+                        <input type="url" id="edit-demo_link" name="demo_link" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Ubah Gambar Preview (Opsional, maks 5MB)</label>
+                    <input type="file" name="image" accept="image/*" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-cyan-500 file:text-white">
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="document.getElementById('modal-edit-project').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 hover:text-white">Batal</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400">Update Proyek</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <script>
-        function setDeleteAction(btn) {
-            const projectId = btn.getAttribute('data-project-id');
-            const baseUrl = '{{ url('dashboard/project') }}';
-            document.getElementById('delete-form').action = baseUrl + '/' + projectId;
-        }
-
-        function openEditDrawer(btn) {
-            const project = JSON.parse(btn.getAttribute('data-project'));
-            const baseUrl = '{{ url('dashboard/project') }}';
-            const storageUrl = '{{ asset('storage') }}';
-
-            document.getElementById('edit-form').action = baseUrl + '/' + project.id;
-            document.getElementById('edit_title').value = project.title;
-            document.getElementById('edit_description').value = project.description;
-            document.getElementById('edit_github').value = project.github || '';
-            document.getElementById('edit_link').value = project.link || '';
-
-            if (project.image) {
-                document.getElementById('edit_preview').src = storageUrl + '/' + project.image;
-                document.getElementById('preview-container').classList.remove('hidden');
-            }
+        function editProject(project) {
+            const form = document.getElementById('form-edit-project');
+            form.action = '/dashboard/project/' + project.id;
+            document.getElementById('edit-title').value = project.title;
+            document.getElementById('edit-description').value = project.description;
+            document.getElementById('edit-github_link').value = project.github_link || '';
+            document.getElementById('edit-demo_link').value = project.demo_link || '';
+            document.getElementById('modal-edit-project').classList.remove('hidden');
         }
     </script>
 
-</x-app-layout>
+</x-cms-layout>

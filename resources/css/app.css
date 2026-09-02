@@ -1,8 +1,188 @@
 @import "flowbite/src/themes/default";
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-dark: #070b19;
+    --card-dark: #0d1430;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --cyan-accent: #00f0ff;
+    --blue-accent: #38bdf8;
+    --purple-accent: #a855f7;
+    --indigo-accent: #6366f1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  html.dark {
+    background-color: #070b19;
+    color: #cbd5e1;
+  }
+  
+  html.light {
+    background-color: #f8fafc;
+    color: #334155;
+  }
+
+  body {
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Light mode theme overrides */
+html.light body {
+  background-color: #f8fafc !important;
+  color: #334155 !important;
+}
+
+html.light section {
+  background-color: transparent !important;
+}
+
+html.light section#home {
+  background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(168, 85, 247, 0.08), transparent 50%),
+              #f8fafc !important;
+}
+
+html.light section#about,
+html.light section#project,
+html.light section#sertifikat {
+  background-color: #ffffff !important;
+}
+
+html.light section#skill,
+html.light section#pengalaman,
+html.light section#contact {
+  background-color: #f1f5f9 !important;
+}
+
+html.light footer {
+  background-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+html.light nav {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+html.light nav .nav-link {
+  color: #475569 !important;
+}
+
+html.light nav .nav-link:hover {
+  color: #0284c7 !important;
+}
+
+html.light .dark-glass-card {
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .text-white {
+  color: #0f172a !important;
+}
+
+html.light .text-slate-300,
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light input,
+html.light textarea,
+html.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light .bg-slate-900,
+html.light .bg-slate-950,
+html.light .bg-slate-900\/90,
+html.light .bg-slate-900\/80 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html.light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+
+/* Custom glow and gradient classes */
+.text-gradient-cyan-purple {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 40%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark .text-gradient-cyan-purple {
+  background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 40%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-box-cyan {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.25), inset 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+.glow-card-hover {
+  transition: all 0.3s ease;
+}
+
+.glow-card-hover:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+  transform: translateY(-4px);
+}
+
+.dark-glass-card {
+  background: rgba(13, 20, 48, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.progress-gradient-bar {
+  background: linear-gradient(90deg, #00f0ff 0%, #38bdf8 50%, #a855f7 100%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070b19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+
 
 
