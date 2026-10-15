@@ -31,11 +31,18 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg|max:5120',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp,svg|max:20480',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'github_link' => 'nullable|string|max:255',
             'demo_link' => 'nullable|string|max:255',
+        ], [
+            'image.required' => 'Gambar proyek wajib diunggah.',
+            'image.image' => 'File yang diunggah harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus berupa jpeg, png, jpg, gif, webp, atau svg.',
+            'image.max' => 'Ukuran gambar maksimal adalah 20MB.',
+            'title.required' => 'Judul proyek wajib diisi.',
+            'description.required' => 'Deskripsi proyek wajib diisi.',
         ]);
 
         $data = $request->only(['title', 'description', 'github_link', 'demo_link']);
@@ -73,11 +80,17 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,svg|max:20480',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'github_link' => 'nullable|string|max:255',
             'demo_link' => 'nullable|string|max:255',
+        ], [
+            'image.image' => 'File yang diunggah harus berupa gambar.',
+            'image.mimes' => 'Format gambar harus berupa jpeg, png, jpg, gif, webp, atau svg.',
+            'image.max' => 'Ukuran gambar maksimal adalah 20MB.',
+            'title.required' => 'Judul proyek wajib diisi.',
+            'description.required' => 'Deskripsi proyek wajib diisi.',
         ]);
 
         $data = $request->only(['title', 'description', 'github_link', 'demo_link']);

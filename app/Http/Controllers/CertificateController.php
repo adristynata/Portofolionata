@@ -22,7 +22,7 @@ class CertificateController extends Controller
             'year' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'link' => 'nullable|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
         $data = $request->except('image');
@@ -45,7 +45,7 @@ class CertificateController extends Controller
             'year' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'link' => 'nullable|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:20480',
         ]);
 
         $data = $request->except('image');
