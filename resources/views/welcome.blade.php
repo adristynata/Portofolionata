@@ -227,43 +227,43 @@
                 </h2>
             </div>
 
-            {{-- Dynamic Skill Cards Grid --}}
+            {{-- Dynamic Skill Cards Grid (Clean & Modern without Percentages) --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 @forelse ($skills as $skill)
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-base font-bold text-white">{{ $skill->name }}</h3>
-                                    <span class="text-xs font-semibold text-cyan-400">{{ $skill->level }}</span>
-                                </div>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300 flex items-center justify-between group">
+                        <div class="flex items-center gap-3.5 sm:gap-4">
+                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/60 transition-all shrink-0">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                             </div>
-                            <span class="text-sm font-bold text-cyan-400">{{ $skill->percentage }}%</span>
+                            <div>
+                                <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                    {{ $skill->name }}
+                                </h3>
+                                <span class="text-xs text-slate-400 font-medium">
+                                    {{ $skill->category ?? 'Web Development' }}
+                                </span>
+                            </div>
                         </div>
-                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                            <div class="progress-gradient-bar h-full rounded-full" style="width: {{ $skill->percentage }}%"></div>
-                        </div>
+                        @if(!empty($skill->level))
+                            <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900/90 border border-slate-700/80 text-cyan-400 group-hover:border-cyan-500/40 shrink-0">
+                                {{ $skill->level }}
+                            </span>
+                        @endif
                     </div>
                 @empty
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-base font-bold text-white">Laravel</h3>
-                                    <span class="text-xs font-semibold text-cyan-400">Beginner</span>
-                                </div>
+                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800/80 hover:border-cyan-500/50 transition duration-300 flex items-center justify-between">
+                        <div class="flex items-center gap-3.5 sm:gap-4">
+                            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                             </div>
-                            <span class="text-sm font-bold text-cyan-400">70%</span>
+                            <div>
+                                <h3 class="text-base font-bold text-white">Laravel</h3>
+                                <span class="text-xs text-slate-400">Backend Development</span>
+                            </div>
                         </div>
-                        <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                            <div class="progress-gradient-bar h-full rounded-full" style="width: 70%"></div>
-                        </div>
+                        <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 border border-slate-700 text-cyan-400">
+                            Beginner
+                        </span>
                     </div>
                 @endforelse
             </div>

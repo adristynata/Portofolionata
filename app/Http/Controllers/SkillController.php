@@ -18,12 +18,17 @@ class SkillController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'level' => 'required|string|max:255',
-            'percentage' => 'required|integer|min:0|max:100',
+            'percentage' => 'nullable|integer|min:0|max:100',
             'category' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
         ]);
 
-        Skill::create($request->all());
+        $data = $request->all();
+        if (empty($data['percentage'])) {
+            $data['percentage'] = 75;
+        }
+
+        Skill::create($data);
 
         return back()->with('success', 'Skill berhasil ditambahkan!');
     }
@@ -33,12 +38,17 @@ class SkillController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'level' => 'required|string|max:255',
-            'percentage' => 'required|integer|min:0|max:100',
+            'percentage' => 'nullable|integer|min:0|max:100',
             'category' => 'required|string|max:255',
             'icon' => 'nullable|string|max:255',
         ]);
 
-        $skill->update($request->all());
+        $data = $request->all();
+        if (empty($data['percentage'])) {
+            $data['percentage'] = $skill->percentage ?? 75;
+        }
+
+        $skill->update($data);
 
         return back()->with('success', 'Skill berhasil diperbarui!');
     }

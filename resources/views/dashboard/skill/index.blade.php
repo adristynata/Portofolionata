@@ -104,8 +104,8 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Persentase (0 - 100%)</label>
-                    <input type="number" name="percentage" min="0" max="100" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="75">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Persentase (Opsional)</label>
+                    <input type="number" name="percentage" min="0" max="100" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Opsional (misal: 75)">
                 </div>
                 <div class="pt-2 flex justify-end gap-3">
                     <button type="button" onclick="document.getElementById('modal-add-skill').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 hover:text-white">Batal</button>
@@ -151,8 +151,8 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">Persentase (0 - 100%)</label>
-                    <input type="number" id="edit-skill-percentage" name="percentage" min="0" max="100" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">Persentase (Opsional)</label>
+                    <input type="number" id="edit-skill-percentage" name="percentage" min="0" max="100" class="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500" placeholder="Opsional (misal: 75)">
                 </div>
                 <div class="pt-2 flex justify-end gap-3">
                     <button type="button" onclick="document.getElementById('modal-edit-skill').classList.add('hidden')" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 hover:text-white">Batal</button>
