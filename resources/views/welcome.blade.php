@@ -322,7 +322,7 @@
                         <div class="px-5 sm:px-6 pb-5 pt-3 flex items-center gap-2.5 border-t border-slate-800/60 mt-auto">
                             @if($project->demo_link)
                                 <a href="{{ Str::startsWith($project->demo_link, ['http://', 'https://']) ? $project->demo_link : 'https://' . $project->demo_link }}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all duration-200 hover:-translate-y-0.5">
-                                    <span>Lihat Demo</span>
+                                    <span>Kunjungi Web</span>
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                 </a>
                             @endif
@@ -359,7 +359,7 @@
 
                         <div class="px-5 sm:px-6 pb-5 pt-3 flex items-center gap-2.5 border-t border-slate-800/60 mt-auto">
                             <a href="#" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition">
-                                <span>Lihat Demo</span>
+                                <span>Kunjungi Web</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
                             <a href="https://github.com" target="_blank" class="px-3.5 py-2.5 inline-flex items-center justify-center gap-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-slate-800/90 hover:bg-slate-700 border border-slate-700 transition">
