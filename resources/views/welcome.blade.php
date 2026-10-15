@@ -305,9 +305,6 @@
                                         No Image
                                     </div>
                                 @endif
-                                <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[11px] font-extrabold bg-cyan-500 text-white shadow-md">
-                                    Web App
-                                </span>
                             </div>
 
                             {{-- Content --}}
@@ -315,34 +312,32 @@
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-2 leading-snug">
                                     {{ $project->title }}
                                 </h3>
-                                <p class="text-xs text-slate-400 mb-4 leading-relaxed line-clamp-3">
+                                <p class="text-xs text-slate-400 mb-2 leading-relaxed line-clamp-3">
                                     {{ $project->description }}
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-2">
-                                    <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">laravel</span>
-                                    <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">tailwind</span>
-                                </div>
                             </div>
                         </div>
 
-                        {{-- Footer Actions --}}
-                        <div class="px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between border-t border-slate-800/60">
+                        {{-- Footer Actions / Buttons --}}
+                        <div class="px-5 sm:px-6 pb-5 pt-3 flex items-center gap-2.5 border-t border-slate-800/60 mt-auto">
                             @if($project->demo_link)
-                                <a href="{{ $project->demo_link }}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300">
-                                    <span>Detail Proyek</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <a href="{{ Str::startsWith($project->demo_link, ['http://', 'https://']) ? $project->demo_link : 'https://' . $project->demo_link }}" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition-all duration-200 hover:-translate-y-0.5">
+                                    <span>Lihat Demo</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                                 </a>
-                            @else
-                                <span class="text-xs font-bold text-cyan-400 flex items-center gap-1 cursor-pointer">
-                                    <span>Detail Proyek</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </span>
                             @endif
 
                             @if($project->github_link)
-                                <a href="{{ $project->github_link }}" target="_blank" class="text-slate-400 hover:text-white transition">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                                <a href="{{ Str::startsWith($project->github_link, ['http://', 'https://']) ? $project->github_link : 'https://' . $project->github_link }}" target="_blank" rel="noopener noreferrer" class="{{ $project->demo_link ? 'px-3.5' : 'flex-1' }} py-2.5 inline-flex items-center justify-center gap-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-slate-800/90 hover:bg-slate-700 border border-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                                    <span>GitHub</span>
                                 </a>
+                            @endif
+
+                            @if(!$project->demo_link && !$project->github_link)
+                                <div class="w-full py-2.5 inline-flex items-center justify-center gap-2 rounded-xl text-xs font-semibold text-slate-400 bg-slate-800/40 border border-slate-800">
+                                    <span>Proyek Pribadi / Portofolio</span>
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -351,31 +346,25 @@
                         <div>
                             <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
                                 <img src="{{ asset('images/foto-saya.jpg') }}" alt="Website E Commerce Tote Bag Art Terra" class="w-full h-full object-cover">
-                                <span class="absolute top-3 right-3 px-3 py-1 rounded-full text-[11px] font-extrabold bg-cyan-500 text-white shadow-md">
-                                    Web App
-                                </span>
                             </div>
                             <div class="p-5 sm:p-6">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-2">
                                     Website E Commerce Tote Bag Art Terra
                                 </h3>
-                                <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                                <p class="text-xs text-slate-400 mb-2 leading-relaxed">
                                     Website Ini adalah E commerce yang menjual tote bag ramah lingkungan
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-2">
-                                    <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">laravel</span>
-                                    <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-800 text-cyan-400 border border-slate-700">tailwind</span>
-                                </div>
                             </div>
                         </div>
 
-                        <div class="px-5 sm:px-6 pb-5 pt-2 flex items-center justify-between border-t border-slate-800/60">
-                            <span class="text-xs font-bold text-cyan-400 flex items-center gap-1 cursor-pointer">
-                                <span>Detail Proyek</span>
-                                <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </span>
-                            <a href="https://github.com" target="_blank" class="text-slate-400 hover:text-white transition">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                        <div class="px-5 sm:px-6 pb-5 pt-3 flex items-center gap-2.5 border-t border-slate-800/60 mt-auto">
+                            <a href="#" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition">
+                                <span>Lihat Demo</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                            <a href="https://github.com" target="_blank" class="px-3.5 py-2.5 inline-flex items-center justify-center gap-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-slate-800/90 hover:bg-slate-700 border border-slate-700 transition">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                                <span>GitHub</span>
                             </a>
                         </div>
                     </div>
