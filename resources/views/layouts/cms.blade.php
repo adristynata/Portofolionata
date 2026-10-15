@@ -108,7 +108,7 @@
         </aside>
 
         <!-- MAIN CONTENT AREA -->
-        <main class="flex-1 p-6 sm:p-10 overflow-y-auto">
+        <main class="flex-1 min-w-0 p-4 sm:p-8 lg:p-10 overflow-y-auto">
             
             @if(session('success'))
                 <div class="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-3">
