@@ -18,9 +18,9 @@
                     
                     {{-- Pill Badge --}}
                     <div>
-                        <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider bg-slate-900/90 border border-cyan-500/40 text-cyan-400 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
-                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
-                            FULLSTACK SOFTWARE ENGINEER
+                        <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 backdrop-blur-md">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>Tersedia Untuk Proyek & Peluang Kerja</span>
                         </span>
                     </div>
 
@@ -42,15 +42,15 @@
 
                     {{-- CTA Buttons --}}
                     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
-                        <a href="#project" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-blue-600/30 hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all text-center">
-                            <span>Lihat Hasil Karya</span>
+                        <a href="#project" class="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/35 hover:-translate-y-0.5 transition-all duration-200 text-center">
+                            <span>Jelajahi Proyek</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                             </svg>
                         </a>
-                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/60 hover:text-white hover:bg-slate-800 transition-all shadow-inner text-center">
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-xl font-semibold text-sm text-slate-200 bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/50 hover:text-white hover:bg-slate-800 transition-all duration-200 text-center">
                             <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                             </svg>
                             <span>Hubungi Saya</span>
                         </a>
@@ -89,12 +89,20 @@
                 <div class="lg:col-span-5 flex justify-center mt-4 lg:mt-0">
                     <div class="relative group">
                         
-                        {{-- Neon Outer Glow --}}
-                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 blur-xl opacity-80 group-hover:opacity-100 transition duration-500 shadow-[0_0_50px_rgba(0,240,255,0.4)]"></div>
+                        {{-- Ambient Glow --}}
+                        <div class="absolute -inset-2 rounded-3xl bg-cyan-500/15 blur-2xl group-hover:bg-cyan-500/25 transition duration-500 pointer-events-none"></div>
 
                         {{-- Photo Frame Container --}}
-                        <div class="relative w-[260px] sm:w-[300px] lg:w-[330px] h-[330px] sm:h-[380px] lg:h-[410px] rounded-3xl overflow-hidden bg-slate-900 border-2 border-cyan-400/80 shadow-2xl">
-                            <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                        <div class="relative p-2 rounded-3xl bg-gradient-to-b from-slate-700/60 via-slate-800/40 to-slate-900/80 border border-slate-700/70 shadow-2xl backdrop-blur-sm">
+                            <div class="w-[260px] sm:w-[300px] lg:w-[320px] h-[330px] sm:h-[380px] lg:h-[400px] rounded-2xl overflow-hidden bg-slate-950">
+                                <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                            </div>
+
+                            {{-- Floating Micro-Badge --}}
+                            <div class="absolute -bottom-3 -right-3 bg-slate-900/95 backdrop-blur-md border border-slate-700/80 px-3.5 py-1.5 rounded-xl shadow-xl flex items-center gap-2 text-xs font-bold text-white">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>SMK N 1 Bangsri</span>
+                            </div>
                         </div>
 
                     </div>
@@ -109,12 +117,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-12 sm:mb-16">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">TENTANG SAYA</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
-                    Dedikasi Dalam Pengembangan Aplikasi Web
+            <div class="text-center mb-12 sm:mb-14">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    Tentang Saya
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Dedikasi Dalam Pengembangan Web
                 </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Mengenal lebih dekat latar belakang, filosofi kerja, dan fokus keahlian saya di dunia software engineering.
+                </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -219,12 +232,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-12 sm:mb-16">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">KEAHLIAN TEKNIS</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
-                    Teknologi & Bahasa Pemrograman
+            <div class="text-center mb-12 sm:mb-14">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    Keahlian Teknis
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Teknologi & Stack Unggulan
                 </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Kumpulan bahasa pemrograman, framework, dan tools yang saya gunakan dalam membangun aplikasi modern.
+                </p>
             </div>
 
             {{-- Dynamic Skill Cards Grid (Clean & Modern without Percentages) --}}
@@ -275,12 +293,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
-            <div class="text-center mb-8 sm:mb-10">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">PORTOFOLIO KARYA</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
-                    Proyek Yang Telah Dikembangkan
+            <div class="text-center mb-8 sm:mb-12">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    Portofolio Karya
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Karya & Proyek Terpilih
                 </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Kumpulan aplikasi web dan proyek yang telah saya bangun dengan fokus pada fungsionalitas dan estetika.
+                </p>
             </div>
 
             {{-- Category Filter Pill --}}
@@ -482,11 +505,16 @@
             
             {{-- Section Header --}}
             <div class="text-center mb-12 sm:mb-16">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">PENGALAMAN & REKAM JEJAK</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    Perjalanan Karier
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Riwayat Pendidikan & Organisasi
                 </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Jejak pembelajaran dan keaktifan organisasi yang membentuk keahlian teknis saya.
+                </p>
             </div>
 
             {{-- Dynamic Timeline Cards --}}
@@ -555,11 +583,16 @@
             
             {{-- Section Header --}}
             <div class="text-center mb-12 sm:mb-16">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">SERTIFIKASI & LISENSI</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                    Sertifikasi & Lisensi
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                     Pencapaian & Bukti Kompetensi
                 </h2>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Bukti keahlian dan kompetensi resmi yang diakui oleh lembaga pendidikan dan industri.
+                </p>
             </div>
 
             {{-- Certificate Cards Grid --}}
@@ -636,99 +669,184 @@
 
     {{-- === 7. CONTACT SECTION (#contact) === --}}
     <section id="contact" class="relative py-16 sm:py-24 bg-[#070b19]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Subtle ambient grid background --}}
+        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             {{-- Section Header --}}
             <div class="text-center mb-12 sm:mb-16">
-                <span class="text-xs font-black uppercase tracking-widest text-cyan-400">KONTAK</span>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full mt-2 mb-4"></div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-3">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                     Hubungi Saya
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Mari Terhubung & Berkolaborasi
                 </h2>
-                <p class="text-slate-400 text-xs sm:text-sm mt-2">
-                    Siap berkolaborasi untuk membuat proyek web Anda berikutnya.
+                <p class="text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+                    Punya ide proyek, penawaran kerja sama, atau sekadar ingin berdiskusi? Pintu saya selalu terbuka!
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto">
                 
-                {{-- Left: Quick Contact Info --}}
-                <div class="lg:col-span-5 flex flex-col gap-4 sm:gap-6">
-                    
-                    {{-- Email --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <div class="overflow-hidden min-w-0">
-                            <span class="block text-xs font-semibold text-slate-400">Email</span>
-                            <a href="mailto:{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}" class="text-xs sm:text-sm font-bold text-white hover:text-cyan-400 transition truncate block">
-                                {{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- WhatsApp / Phone --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <div>
-                            <span class="block text-xs font-semibold text-slate-400">Telepon / WhatsApp</span>
-                            <a href="{{ $profile->whatsapp_url ?? 'https://wa.me/6289639685566' }}" target="_blank" class="text-xs sm:text-sm font-bold text-white hover:text-emerald-400 transition">
-                                {{ $profile->phone ?? '+62 896-3968-5566' }}
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Location --}}
-                    <div class="dark-glass-card p-5 sm:p-6 rounded-2xl border border-slate-800 flex items-center gap-4 hover:border-cyan-500/50 transition">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                        </div>
-                        <div>
-                            <span class="block text-xs font-semibold text-slate-400">Lokasi</span>
-                            <span class="text-xs sm:text-sm font-bold text-white">
-                                {{ $profile->location ?? 'Jepara, Jawa Tengah, Indonesia' }}
+                {{-- Left Column: Interactive Contact Command Center --}}
+                <div class="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl">
+                    <div>
+                        {{-- Availability status pill --}}
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-6">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
+                            <span>Terbuka Untuk Peluang Baru</span>
+                        </div>
+
+                        <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
+                            Siap Memulai Proyek Anda?
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+                            Saya selalu antusias berdiskusi seputar pembuatan website modern, sistem informasi, maupun kolaborasi pengembangan software.
+                        </p>
+
+                        {{-- Contact Items List --}}
+                        <div class="space-y-3.5">
+                            
+                            {{-- Email item with Copy action --}}
+                            <div class="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 transition-all flex items-center justify-between group">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/25 flex items-center justify-center text-cyan-400 shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[11px] font-medium text-slate-400">Email Resmi</span>
+                                        <a href="mailto:{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}" class="text-xs sm:text-sm font-bold text-white hover:text-cyan-400 transition truncate block">
+                                            {{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="copyContactEmail('{{ $profile->email ?? 'adristyakikoyukinata@gmail.com' }}')" id="copy-email-btn" title="Salin Email" class="p-2 rounded-xl bg-slate-900 border border-slate-700/80 hover:border-cyan-500/50 text-slate-300 hover:text-cyan-400 transition shrink-0">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                </button>
+                            </div>
+
+                            {{-- WhatsApp item with direct chat action --}}
+                            <div class="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 hover:border-emerald-500/40 transition-all flex items-center justify-between group">
+                                <div class="flex items-center gap-3 min-w-0">
+                                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-center text-emerald-400 shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <div class="min-w-0">
+                                        <span class="block text-[11px] font-medium text-slate-400">Telepon / WhatsApp</span>
+                                        <a href="{{ $profile->whatsapp_url ?? 'https://wa.me/6289639685566' }}" target="_blank" class="text-xs sm:text-sm font-bold text-white hover:text-emerald-400 transition truncate block">
+                                            {{ $profile->phone ?? '+62 896-3968-5566' }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <a href="{{ $profile->whatsapp_url ?? 'https://wa.me/6289639685566' }}" target="_blank" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 text-[11px] font-bold transition shrink-0 flex items-center gap-1">
+                                    <span>Chat</span>
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+
+                            {{-- Location item --}}
+                            <div class="p-3.5 rounded-2xl bg-slate-950/60 border border-slate-800/80 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/25 flex items-center justify-center text-purple-400 shrink-0">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <span class="block text-[11px] font-medium text-slate-400">Domisili</span>
+                                        <span class="text-xs sm:text-sm font-bold text-white">
+                                            {{ $profile->location ?? 'Jepara, Jawa Tengah' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400">
+                                    WIB (UTC+7)
+                                </span>
+                            </div>
+
                         </div>
                     </div>
 
+                    {{-- Social & Response note at bottom of card --}}
+                    <div class="pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-slate-400">
+                        <span class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+                            <span>Respons rata-rata: &lt; 24 jam</span>
+                        </span>
+                        <div class="flex items-center gap-2">
+                            @if(!empty($profile->github_url))
+                                <a href="{{ $profile->github_url }}" target="_blank" title="GitHub" class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-600 transition">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                                </a>
+                            @endif
+                            @if(!empty($profile->linkedin_url))
+                                <a href="{{ $profile->linkedin_url }}" target="_blank" title="LinkedIn" class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-600 transition">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                                </a>
+                            @endif
+                            @if(!empty($profile->instagram_url))
+                                <a href="{{ $profile->instagram_url }}" target="_blank" title="Instagram" class="p-2 rounded-lg bg-slate-950 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-600 transition">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
-                {{-- Right: Contact Form (Submits to DB) --}}
+                {{-- Right Column: Modern High-Converting Contact Form --}}
                 <div class="lg:col-span-7">
                     @if(session('contact_success'))
-                        <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2.5">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>{{ session('contact_success') }}</span>
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="dark-glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-5 sm:space-y-6">
+                    <form action="{{ route('contact.store') }}" method="POST" class="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl space-y-5">
                         @csrf
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-bold text-white mb-1">
+                                Kirim Pesan
+                            </h3>
+                            <p class="text-xs text-slate-400">
+                                Isi formulir di bawah ini dan saya akan merespons ke email Anda sesegera mungkin.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                             <div>
-                                <label class="block text-xs font-bold text-slate-300 mb-2">Nama Lengkap</label>
-                                <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 placeholder-slate-600" placeholder="Masukkan nama Anda">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Lengkap <span class="text-cyan-400">*</span></label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="Masukkan nama Anda">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-300 mb-2">Alamat Email</label>
-                                <input type="email" name="email" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 placeholder-slate-600" placeholder="nama@domain.com">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Alamat Email <span class="text-cyan-400">*</span></label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="nama@email.com">
                             </div>
                         </div>
+
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-2">Subjek</label>
-                            <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 placeholder-slate-600" placeholder="Judul / Subjek Pesan">
+                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Subjek / Topik</label>
+                            <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="e.g. Penawaran Proyek Website, Tanya Jawab, dll.">
                         </div>
+
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-2">Pesan</label>
-                            <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-500 placeholder-slate-600" placeholder="Tuliskan pesan atau penawaran kerja sama di sini..."></textarea>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pesan Anda <span class="text-cyan-400">*</span></label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all leading-relaxed" placeholder="Ceritakan kebutuhan proyek, timeline, atau detail pesan Anda di sini..."></textarea>
                         </div>
-                        <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2">
-                            <span>Kirim Pesan</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </button>
+
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <button type="submit" class="w-full sm:w-auto px-7 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/25 transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 group">
+                                <span>Kirim Pesan Sekarang</span>
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </button>
+                            <span class="text-[11px] text-slate-500 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                <span>Pesan terkirim aman ke admin</span>
+                            </span>
+                        </div>
                     </form>
                 </div>
 
@@ -736,6 +854,21 @@
 
         </div>
     </section>
+
+    <script>
+        function copyContactEmail(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                const btn = document.getElementById('copy-email-btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<span class="text-xs font-bold text-cyan-400 px-1">Tersalin!</span>';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                }, 2000);
+            }).catch(() => {
+                prompt("Salin alamat email:", email);
+            });
+        }
+    </script>
 
     {{-- === 8. FOOTER === --}}
     <footer class="py-8 bg-[#050814] border-t border-slate-800/80 text-center text-xs text-slate-500">
