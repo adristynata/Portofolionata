@@ -37,7 +37,7 @@
 
                     {{-- Bio / Intro Paragraph --}}
                     <p class="text-sm sm:text-base text-slate-400 font-normal leading-relaxed max-w-2xl">
-                        {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer & Software Engineer dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan aplikasi web modern, responsif, dan berperforma tinggi.' }}
+                        {{ $profile->hero_bio ?? 'Saya adalah Junior Web Developer sekaligus Software Engineering dari SMK Negeri 1 Bangsri yang berfokus pada pengembangan web modern, responsif, dan berperforma tinggi.' }}
                     </p>
 
                     {{-- CTA Buttons --}}
