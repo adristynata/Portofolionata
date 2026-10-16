@@ -183,6 +183,34 @@ html.dark .text-gradient-cyan-purple {
   background: #38bdf8;
 }
 
+/* 3D Tech Floating Orbs */
+.tech-orb-teal {
+  background: radial-gradient(circle at 35% 30%, #2dd4bf 0%, #0d9488 22%, #0f766e 45%, #042f2e 75%, #021a19 100%);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.85), 0 0 24px 2px rgba(45, 212, 191, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
 
+@keyframes float-orb-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(5deg);
+  }
+}
 
+@keyframes float-orb-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(14px) rotate(-5deg);
+  }
+}
 
+.animate-float-1 {
+  animation: float-orb-1 5.5s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-orb-2 7s ease-in-out infinite;
+}

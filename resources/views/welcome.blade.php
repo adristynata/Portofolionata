@@ -85,17 +85,57 @@
 
                 </div>
 
-                {{-- Right Side: Profile Photo Frame --}}
-                <div class="lg:col-span-5 flex justify-center mt-4 lg:mt-0">
-                    <div class="relative group">
+                {{-- Right Side: Seamless Profile Cutout with 3D Tech Orbs & Arch Backdrop (Matching User Reference) --}}
+                <div class="lg:col-span-5 flex justify-center mt-6 lg:mt-0">
+                    <div class="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] flex items-center justify-center">
                         
-                        {{-- Soft Ambient Glow Behind Photo --}}
-                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-purple-500/20 blur-2xl group-hover:opacity-100 transition duration-500 pointer-events-none opacity-60"></div>
+                        {{-- Soft Ambient Glow Behind Backdrop --}}
+                        <div class="absolute -inset-6 bg-gradient-to-tr from-cyan-500/15 via-blue-600/10 to-teal-500/15 rounded-full blur-3xl pointer-events-none opacity-80"></div>
 
-                        {{-- Clean Photo Card --}}
-                        <div class="relative w-[260px] sm:w-[300px] lg:w-[320px] aspect-[4/5] rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl bg-slate-950">
-                            <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto Profil' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                        {{-- Background Geometric Stripe Arch (Matching Reference) --}}
+                        <div class="absolute inset-0 -top-6 flex items-center justify-center pointer-events-none z-0">
+                            <svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-[330px] sm:w-[390px] lg:w-[430px] h-auto text-white/20 sm:text-white/25">
+                                <line x1="143.4" y1="55" x2="256.6" y2="55" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="116.0" y1="68" x2="284.0" y2="68" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="97.1" y1="81" x2="302.9" y2="81" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="82.7" y1="94" x2="317.3" y2="94" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="71.1" y1="107" x2="328.9" y2="107" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="61.7" y1="120" x2="338.3" y2="120" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="54.1" y1="133" x2="345.9" y2="133" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="47.9" y1="146" x2="352.1" y2="146" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="43.1" y1="159" x2="356.9" y2="159" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="39.4" y1="172" x2="360.6" y2="172" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="36.9" y1="185" x2="363.1" y2="185" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="35.4" y1="198" x2="364.6" y2="198" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="35.0" y1="211" x2="365.0" y2="211" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="35.6" y1="224" x2="364.4" y2="224" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="37.2" y1="237" x2="362.8" y2="237" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="39.9" y1="250" x2="360.1" y2="250" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="43.7" y1="263" x2="356.3" y2="263" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="48.8" y1="276" x2="351.2" y2="276" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="55.1" y1="289" x2="344.9" y2="289" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="63.0" y1="302" x2="337.0" y2="302" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="72.7" y1="315" x2="327.3" y2="315" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="84.7" y1="328" x2="315.3" y2="328" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="99.7" y1="341" x2="300.3" y2="341" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="119.4" y1="354" x2="280.6" y2="354" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                                <line x1="149.2" y1="367" x2="250.8" y2="367" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" />
+                            </svg>
                         </div>
+
+                        {{-- 3D Glossy Floating Orb 1 (Top Left, Background) --}}
+                        <div class="absolute -left-2 sm:-left-5 top-14 sm:top-16 w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full tech-orb-teal pointer-events-none z-0 animate-float-1"></div>
+
+                        {{-- Cutout Photo of Adristy (No Box, Floating) --}}
+                        <div class="relative z-10 w-[270px] sm:w-[320px] lg:w-[350px] flex justify-center">
+                            <img src="{{ asset('images/adristy_cutout.png') }}" 
+                                 alt="{{ $profile->name ?? 'Foto Profil' }}" 
+                                 class="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.7)] select-none transition duration-500 hover:scale-105"
+                                 style="mask-image: linear-gradient(to bottom, black 82%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);">
+                        </div>
+
+                        {{-- 3D Glossy Floating Orb 2 (Bottom Right, Foreground) --}}
+                        <div class="absolute -right-2 sm:-right-5 bottom-8 sm:bottom-10 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full tech-orb-teal pointer-events-none z-20 animate-float-2"></div>
 
                     </div>
                 </div>
