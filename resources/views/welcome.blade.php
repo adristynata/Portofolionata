@@ -296,10 +296,26 @@
                 @forelse ($projects as $project)
                     <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
                         <div>
-                            {{-- Image Header --}}
-                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
+                            {{-- Image Header with Clickable Zoom Preview --}}
+                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 {{ $project->image ? 'cursor-pointer group/img' : '' }}"
+                                 @if($project->image)
+                                     data-img="{{ asset('storage/' . $project->image) }}"
+                                     data-title="{{ $project->title }}"
+                                     data-desc="{{ $project->description }}"
+                                     data-demo="{{ $project->demo_link ? (Str::startsWith($project->demo_link, ['http://', 'https://']) ? $project->demo_link : 'https://' . $project->demo_link) : '' }}"
+                                     data-github="{{ $project->github_link ? (Str::startsWith($project->github_link, ['http://', 'https://']) ? $project->github_link : 'https://' . $project->github_link) : '' }}"
+                                     onclick="openProjectModalFromElement(this)"
+                                     title="Klik untuk melihat gambar penuh"
+                                 @endif
+                            >
                                 @if($project->image)
-                                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                    <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 shadow-xl flex items-center gap-1.5 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
+                                            <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+                                            <span>Lihat Gambar Penuh</span>
+                                        </span>
+                                    </div>
                                 @else
                                     <div class="w-full h-full flex items-center justify-center text-slate-600 bg-slate-900 font-bold text-xs">
                                         No Image
@@ -344,8 +360,22 @@
                 @empty
                     <div class="dark-glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition duration-300 flex flex-col justify-between">
                         <div>
-                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900">
-                                <img src="{{ asset('images/foto-saya.jpg') }}" alt="Website E Commerce Tote Bag Art Terra" class="w-full h-full object-cover">
+                            <div class="relative h-48 sm:h-52 w-full overflow-hidden bg-slate-900 cursor-pointer group/img"
+                                 data-img="{{ asset('images/foto-saya.jpg') }}"
+                                 data-title="Website E Commerce Tote Bag Art Terra"
+                                 data-desc="Website Ini adalah E commerce yang menjual tote bag ramah lingkungan"
+                                 data-demo=""
+                                 data-github="https://github.com"
+                                 onclick="openProjectModalFromElement(this)"
+                                 title="Klik untuk melihat gambar penuh"
+                            >
+                                <img src="{{ asset('images/foto-saya.jpg') }}" alt="Website E Commerce Tote Bag Art Terra" class="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-105">
+                                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                    <span class="px-3.5 py-1.5 rounded-full text-xs font-bold text-white bg-slate-900/85 backdrop-blur-md border border-cyan-500/40 shadow-xl flex items-center gap-1.5 transform translate-y-2 group-hover/img:translate-y-0 transition-transform duration-300">
+                                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+                                        <span>Lihat Gambar Penuh</span>
+                                    </span>
+                                </div>
                             </div>
                             <div class="p-5 sm:p-6">
                                 <h3 class="text-base sm:text-lg font-bold text-white mb-2">
@@ -371,6 +401,78 @@
                 @endforelse
 
             </div>
+
+            <!-- Modal Preview Foto Proyek Fullscreen -->
+            <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 transition-all duration-300" onclick="closeProjectModal()">
+                <div class="relative max-w-5xl w-full p-2" onclick="event.stopPropagation()">
+                    <button type="button" onclick="closeProjectModal()" class="absolute -top-10 right-0 text-slate-300 hover:text-white text-2xl font-bold flex items-center gap-1.5 leading-none transition">
+                        <span>&times;</span>
+                        <span class="text-sm font-semibold">Tutup</span>
+                    </button>
+                    <div class="overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-950 shadow-2xl">
+                        {{-- Image Display Area --}}
+                        <div class="max-h-[72vh] overflow-auto flex items-center justify-center p-3 bg-slate-950/90">
+                            <img id="project-modal-img" src="" alt="Preview Proyek" class="w-auto h-auto max-w-full max-h-[68vh] object-contain rounded-xl shadow-lg">
+                        </div>
+                        {{-- Bottom Info & Quick Action Bar --}}
+                        <div class="p-4 sm:p-5 bg-slate-900 border-t border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div class="flex-1 min-w-0">
+                                <h3 id="project-modal-title" class="text-base sm:text-lg font-bold text-white mb-1 truncate"></h3>
+                                <p id="project-modal-desc" class="text-xs sm:text-sm text-slate-400 leading-relaxed"></p>
+                            </div>
+                            <div class="flex items-center gap-2.5 shrink-0">
+                                <a id="project-modal-demo" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/20 transition flex items-center gap-1.5">
+                                    <span>Kunjungi Web</span>
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                                <a id="project-modal-github" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-200 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition flex items-center gap-1.5">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                                    <span>GitHub</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openProjectModalFromElement(el) {
+                    const imgUrl = el.getAttribute('data-img');
+                    const title = el.getAttribute('data-title');
+                    const desc = el.getAttribute('data-desc');
+                    const demoUrl = el.getAttribute('data-demo');
+                    const githubUrl = el.getAttribute('data-github');
+                    openProjectModal(imgUrl, title, desc, demoUrl, githubUrl);
+                }
+
+                function openProjectModal(imgUrl, title, desc, demoUrl, githubUrl) {
+                    document.getElementById('project-modal-img').src = imgUrl;
+                    document.getElementById('project-modal-title').innerText = title;
+                    document.getElementById('project-modal-desc').innerText = desc || '';
+
+                    const demoBtn = document.getElementById('project-modal-demo');
+                    if (demoUrl) {
+                        demoBtn.href = demoUrl;
+                        demoBtn.classList.remove('hidden');
+                    } else {
+                        demoBtn.classList.add('hidden');
+                    }
+
+                    const ghBtn = document.getElementById('project-modal-github');
+                    if (githubUrl) {
+                        ghBtn.href = githubUrl;
+                        ghBtn.classList.remove('hidden');
+                    } else {
+                        ghBtn.classList.add('hidden');
+                    }
+
+                    document.getElementById('project-modal').classList.remove('hidden');
+                }
+
+                function closeProjectModal() {
+                    document.getElementById('project-modal').classList.add('hidden');
+                }
+            </script>
         </div>
     </section>
 
