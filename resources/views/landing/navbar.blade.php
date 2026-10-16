@@ -4,15 +4,15 @@
             
             <!-- Left: Logo & Brand Info -->
             <a href="#home" class="flex items-center gap-3.5 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
-                    A
+                <div class="relative w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/20 group-hover:scale-105 group-hover:shadow-cyan-500/40 transition-all duration-300">
+                    <img src="{{ asset('images/logo.svg') }}" alt="Logo Adristy" class="w-full h-full object-contain">
                 </div>
                 <div class="flex flex-col">
                     <span class="text-white font-bold tracking-tight text-base group-hover:text-cyan-400 transition-colors">
                         Adristy Akiko Yukinata
                     </span>
                     <span class="text-[10px] font-extrabold tracking-widest text-cyan-400 uppercase">
-                        SOFTWARE DEVELOPER
+                        FULLSTACK DEVELOPER
                     </span>
                 </div>
             </a>
