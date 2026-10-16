@@ -19,8 +19,8 @@
                     {{-- Pill Badge --}}
                     <div>
                         <span class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 backdrop-blur-md">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>Tersedia Untuk Proyek & Peluang Kerja</span>
+                            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                            <span>Fullstack Developer</span>
                         </span>
                     </div>
 
@@ -32,7 +32,7 @@
 
                     {{-- Subheading --}}
                     <h2 class="text-lg sm:text-xl font-bold text-slate-300">
-                        {{ $profile->role_title ?? 'Web Developer' }}
+                        {{ $profile->role_title ?? 'Fullstack Developer' }}
                     </h2>
 
                     {{-- Bio / Intro Paragraph --}}
@@ -89,20 +89,12 @@
                 <div class="lg:col-span-5 flex justify-center mt-4 lg:mt-0">
                     <div class="relative group">
                         
-                        {{-- Ambient Glow --}}
-                        <div class="absolute -inset-2 rounded-3xl bg-cyan-500/15 blur-2xl group-hover:bg-cyan-500/25 transition duration-500 pointer-events-none"></div>
+                        {{-- Soft Ambient Glow Behind Photo --}}
+                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-blue-500/10 to-purple-500/20 blur-2xl group-hover:opacity-100 transition duration-500 pointer-events-none opacity-60"></div>
 
-                        {{-- Photo Frame Container --}}
-                        <div class="relative p-2 rounded-3xl bg-gradient-to-b from-slate-700/60 via-slate-800/40 to-slate-900/80 border border-slate-700/70 shadow-2xl backdrop-blur-sm">
-                            <div class="w-[260px] sm:w-[300px] lg:w-[320px] h-[330px] sm:h-[380px] lg:h-[400px] rounded-2xl overflow-hidden bg-slate-950">
-                                <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
-                            </div>
-
-                            {{-- Floating Micro-Badge --}}
-                            <div class="absolute -bottom-3 -right-3 bg-slate-900/95 backdrop-blur-md border border-slate-700/80 px-3.5 py-1.5 rounded-xl shadow-xl flex items-center gap-2 text-xs font-bold text-white">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span>SMK N 1 Bangsri</span>
-                            </div>
+                        {{-- Clean Photo Card --}}
+                        <div class="relative w-[260px] sm:w-[300px] lg:w-[320px] aspect-[4/5] rounded-3xl overflow-hidden border border-slate-700/60 shadow-2xl bg-slate-950">
+                            <img src="{{ !empty($profile->photo) ? asset($profile->photo) : asset('images/foto-saya.jpg') }}" alt="{{ $profile->name ?? 'Foto Profil' }}" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
                         </div>
 
                     </div>
@@ -691,7 +683,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch max-w-6xl mx-auto">
                 
                 {{-- Left Column: Interactive Contact Command Center --}}
-                <div class="lg:col-span-5 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl">
+                <div class="lg:col-span-5 flex flex-col justify-between h-full p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl">
                     <div>
                         {{-- Availability status pill --}}
                         <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-6">
@@ -797,47 +789,49 @@
                 </div>
 
                 {{-- Right Column: Modern High-Converting Contact Form --}}
-                <div class="lg:col-span-7">
+                <div class="lg:col-span-7 flex flex-col h-full">
                     @if(session('contact_success'))
-                        <div class="mb-6 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2.5">
+                        <div class="mb-4 p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-sm font-bold flex items-center gap-2.5">
                             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <span>{{ session('contact_success') }}</span>
                         </div>
                     @endif
 
-                    <form action="{{ route('contact.store') }}" method="POST" class="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl space-y-5">
+                    <form action="{{ route('contact.store') }}" method="POST" class="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl flex-1 flex flex-col justify-between">
                         @csrf
-                        <div>
-                            <h3 class="text-lg sm:text-xl font-bold text-white mb-1">
-                                Kirim Pesan
-                            </h3>
-                            <p class="text-xs text-slate-400">
-                                Isi formulir di bawah ini dan saya akan merespons ke email Anda sesegera mungkin.
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                        <div class="space-y-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Lengkap <span class="text-cyan-400">*</span></label>
-                                <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="Masukkan nama Anda">
+                                <h3 class="text-lg sm:text-xl font-bold text-white mb-1">
+                                    Kirim Pesan
+                                </h3>
+                                <p class="text-xs text-slate-400">
+                                    Isi formulir di bawah ini dan saya akan merespons ke email Anda sesegera mungkin.
+                                </p>
                             </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Nama Lengkap <span class="text-cyan-400">*</span></label>
+                                    <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="Masukkan nama Anda">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">Alamat Email <span class="text-cyan-400">*</span></label>
+                                    <input type="email" name="email" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="nama@email.com">
+                                </div>
+                            </div>
+
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Alamat Email <span class="text-cyan-400">*</span></label>
-                                <input type="email" name="email" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="nama@email.com">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Subjek / Topik</label>
+                                <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="e.g. Penawaran Proyek Website, Tanya Jawab, dll.">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pesan Anda <span class="text-cyan-400">*</span></label>
+                                <textarea name="message" rows="3" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all leading-relaxed resize-none" placeholder="Ceritakan kebutuhan proyek, timeline, atau detail pesan Anda di sini..."></textarea>
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Subjek / Topik</label>
-                            <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all" placeholder="e.g. Penawaran Proyek Website, Tanya Jawab, dll.">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Pesan Anda <span class="text-cyan-400">*</span></label>
-                            <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-slate-950/70 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 transition-all leading-relaxed" placeholder="Ceritakan kebutuhan proyek, timeline, atau detail pesan Anda di sini..."></textarea>
-                        </div>
-
-                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="pt-6 mt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
                             <button type="submit" class="w-full sm:w-auto px-7 py-3 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-md shadow-cyan-500/25 transition-all duration-200 hover:-translate-y-0.5 flex items-center justify-center gap-2 group">
                                 <span>Kirim Pesan Sekarang</span>
                                 <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
